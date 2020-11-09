@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "ISC",
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
   "bugs": {
     "url": "https://github.com/Mickaellah/country-quiz/issues"
   },

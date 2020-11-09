@@ -1,1 +1,1 @@
-{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA","file":"styles.8986bff4.css","sourceRoot":"..","sourcesContent":[""]}
+{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","file":"styles.8986bff4.css","sourceRoot":"..","sourcesContent":["img {\r\n    width: 30%;\r\n    height: 20%;\r\n}"]}
