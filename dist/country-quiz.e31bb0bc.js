@@ -29786,28 +29786,128 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function App() {
-  const [countries, setCountries] = (0, _react.useState)([]);
-  console.log(countries);
-
-  async function getCountries() {
-    const res = await fetch('https://restcountries.eu/rest/v2/all/');
-    const data = await res.json();
-    setCountries(data.numericCode);
+class Country extends _react.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      countries: [],
+      randomCountry: {},
+      randomOptions: [],
+      userIsWin: '',
+      disableFieldset: false,
+      goodGuess: 0,
+      bgColor: {
+        backgroundColor: 'white'
+      }
+    };
+    this.getRandomCountry = this.getRandomCountry.bind(this);
+    this.checkWin = this.checkWin.bind(this);
   }
 
-  (0, _react.useEffect)(() => {
-    getCountries();
-  }, []);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, countries.map(country => /*#__PURE__*/_react.default.createElement("div", {
-    key: country.numericCode
-  }, /*#__PURE__*/_react.default.createElement("h3", null, country.name), /*#__PURE__*/_react.default.createElement("p", null, country.capital), /*#__PURE__*/_react.default.createElement("img", {
-    src: country.flag,
-    alt: "Flag"
-  })))));
+  componentDidMount() {
+    const apiUrl = "https://restcountries.eu/rest/v2/all";
+    fetch(apiUrl).then(data => data.json()).then(countries => this.setState({
+      countries
+    })).then(this.getRandomCountry);
+  }
+
+  getRandomCountry() {
+    const random = this.state.countries[Math.floor(Math.random() * this.state.countries.length)];
+    const randomOpt1 = this.state.countries[Math.floor(Math.random() * this.state.countries.length)];
+    const randomOpt2 = this.state.countries[Math.floor(Math.random() * this.state.countries.length)];
+    const randomOpt3 = this.state.countries[Math.floor(Math.random() * this.state.countries.length)];
+    const randomOptions = [random.name, randomOpt1.name, randomOpt2.name, randomOpt3.name];
+    randomOptions.sort(() => {
+      return 0.5 - Math.random();
+    });
+    console.log(randomOptions);
+    this.setState({
+      randomCountry: random,
+      randomOptions: randomOptions,
+      userIsWin: '',
+      disableFieldset: false
+    });
+  }
+
+  checkWin(e) {
+    this.setState({
+      disableFieldset: true
+    });
+    const winCountry = this.state.randomCountry.name;
+    const userGuess = e.target.value;
+
+    if (winCountry === userGuess) {
+      this.setState({
+        userIsWin: 'Win',
+        goodGuess: this.state.goodGuess + 1,
+        bgColor: {
+          backgroundColor: '#81C784'
+        }
+      });
+    } else {
+      this.setState({
+        userIsWin: 'Lose',
+        bgColor: {
+          backgroundColor: '#FF8A65'
+        }
+      });
+    }
+
+    setTimeout(() => {
+      this.getRandomCountry();
+      this.setState({
+        userIsWin: '',
+        disableFieldset: false,
+        bgColor: {
+          backgroundColor: 'white'
+        }
+      });
+      console.log(e.target);
+    }, 2000);
+  }
+
+  render() {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "main"
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+      className: "random",
+      onClick: this.getRandomCountry,
+      hidden: true
+    }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      src: this.state.randomCountry.flag,
+      alt: "Country flag"
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?"))), /*#__PURE__*/_react.default.createElement("fieldset", {
+      disabled: this.state.disableFieldset
+    }, /*#__PURE__*/_react.default.createElement("form", {
+      onClick: e => this.checkWin(e)
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      style: this.state.bgColor,
+      className: "buttons",
+      value: this.state.randomOptions[0]
+    }, this.state.randomOptions[0]), /*#__PURE__*/_react.default.createElement("button", {
+      style: this.state.bgColor,
+      className: "buttons",
+      value: this.state.randomOptions[1]
+    }, this.state.randomOptions[1]), /*#__PURE__*/_react.default.createElement("button", {
+      style: this.state.bgColor,
+      className: "buttons",
+      value: this.state.randomOptions[2]
+    }, this.state.randomOptions[2]), /*#__PURE__*/_react.default.createElement("button", {
+      style: this.state.bgColor,
+      className: "buttons",
+      value: this.state.randomOptions[3]
+    }, this.state.randomOptions[3]))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+      onClick: e => {
+        console.log('I am clicked');
+      },
+      type: "button",
+      className: "next"
+    }, "Next"))), /*#__PURE__*/_react.default.createElement("hr", null));
+  }
+
 }
 
-var _default = App;
+var _default = Country;
 exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -29849,7 +29949,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57837" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58653" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
