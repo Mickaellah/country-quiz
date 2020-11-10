@@ -1,14 +1,18 @@
 body {
     background-color: blue;
+    max-width: 400px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
 }
 
 h1 {
     color: white;
-    text-align: center;
+    text-transform: uppercase;
 }
 
-button {
-    cursor: pointer;
+h3 {
+    color: #2F527B;
+    font-size: 24px;
 }
 
 img {
@@ -16,9 +20,24 @@ img {
     height: 20%;
 }
 
-.red {
-    background-color: red;
+.main {
+    background-color: white;
+    border-radius: 10px;
+    padding: 32px;
 }
+
+fieldset {
+    border: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* .red {
+    background-color: red;
+} */
 
 .next {
     padding-block: 12px;
@@ -32,26 +51,12 @@ img {
 
 }
 
-.green {
+/* .green {
     background-color: green;
-}
+} */
 
-.main {
-    max-width: 400px;
-    background-color: white;
-    border-radius: 10px;
-    padding: 32px;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-}
-
-fieldset {
-    border: none;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
+button {
+    cursor: pointer;
 }
 
 .buttons {
@@ -60,7 +65,14 @@ form {
     padding-block: 8px;
     border: 1px solid lightgray;
     background-color: wheat;
+}
 
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
 }
 
 

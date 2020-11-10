@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 
-class Country extends Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,7 +32,7 @@ class Country extends Component {
         const randomOpt3 = this.state.countries[Math.floor(Math.random()*this.state.countries.length)];
         const randomOptions = [random.name, randomOpt1.name, randomOpt2.name, randomOpt3.name];
         randomOptions.sort(() => { return 0.5 - Math.random() });
-        console.log(randomOptions);
+
         this.setState({
             randomCountry: random,
             randomOptions: randomOptions,
@@ -66,7 +66,6 @@ class Country extends Component {
                 disableFieldset: false,
                 bgColor: {backgroundColor: 'white'}
         })
-        console.log(e.target)
     }, 2000)
 
 }
@@ -84,24 +83,34 @@ render() {
                     <div>
                         <h3>Which country does this flag belong to?</h3>
                     </div>
+                    <h2>{this.state.userIsWin === 'Win' ? `You got ${this.state.goodGuess} correct answer ` : ''}
+                    </h2>
                 </div>
                 <fieldset disabled={this.state.disableFieldset}>
                     <form onClick={e => this.checkWin(e)}>
-                        <button style={this.state.bgColor} className="buttons" value={this.state.randomOptions[0]}>{this.state.randomOptions[0]}</button>
-                        <button style={this.state.bgColor} className="buttons" value={this.state.randomOptions[1]}>{this.state.randomOptions[1]}</button>
-                        <button style={this.state.bgColor} className="buttons" value={this.state.randomOptions[2]}>{this.state.randomOptions[2]}</button>
-                        <button style={this.state.bgColor} className="buttons" value={this.state.randomOptions[3]}>{this.state.randomOptions[3]}</button>
+                        <button 
+                            style={this.state.bgColor}
+                            className={`buttons ${this.state.goodGuess ? 'green' : 'red'}`} value={this.state.randomOptions[0]}>{this.state.randomOptions[0]}</button>
+                        <button 
+                            style={this.state.bgColor}
+                            className={`buttons ${this.state.goodGuess ? 'green' : 'red'}`} value={this.state.randomOptions[1]}>{this.state.randomOptions[1]}</button>
+                        <button 
+                            style={this.state.bgColor}
+                            className={`buttons ${this.state.goodGuess ? 'green' : 'red'}`} value={this.state.randomOptions[2]}>{this.state.randomOptions[2]}</button>
+                        <button 
+                            style={this.state.bgColor}
+                            className={`buttons ${this.state.goodGuess ? 'green' : 'red'}`} value={this.state.randomOptions[3]}>{this.state.randomOptions[3]}</button>
                     </form>
                 </fieldset>
                 <div>
                     <button onClick={(e) => {
                         console.log('I am clicked');
                     }} type="button" className="next">Next</button>
-                </div>
-            </div><hr/>
+                </div> 
+            </div>
         </>
     )
 }
 }
 
-export default Country;
+export default App;

@@ -29786,7 +29786,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-class Country extends _react.Component {
+class App extends _react.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29820,7 +29820,6 @@ class Country extends _react.Component {
     randomOptions.sort(() => {
       return 0.5 - Math.random();
     });
-    console.log(randomOptions);
     this.setState({
       randomCountry: random,
       randomOptions: randomOptions,
@@ -29862,7 +29861,6 @@ class Country extends _react.Component {
           backgroundColor: 'white'
         }
       });
-      console.log(e.target);
     }, 2000);
   }
 
@@ -29876,25 +29874,25 @@ class Country extends _react.Component {
     }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
       src: this.state.randomCountry.flag,
       alt: "Country flag"
-    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?"))), /*#__PURE__*/_react.default.createElement("fieldset", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")), /*#__PURE__*/_react.default.createElement("h2", null, this.state.userIsWin === 'Win' ? `You got ${this.state.goodGuess} correct answer ` : '')), /*#__PURE__*/_react.default.createElement("fieldset", {
       disabled: this.state.disableFieldset
     }, /*#__PURE__*/_react.default.createElement("form", {
       onClick: e => this.checkWin(e)
     }, /*#__PURE__*/_react.default.createElement("button", {
       style: this.state.bgColor,
-      className: "buttons",
+      className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
       value: this.state.randomOptions[0]
     }, this.state.randomOptions[0]), /*#__PURE__*/_react.default.createElement("button", {
       style: this.state.bgColor,
-      className: "buttons",
+      className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
       value: this.state.randomOptions[1]
     }, this.state.randomOptions[1]), /*#__PURE__*/_react.default.createElement("button", {
       style: this.state.bgColor,
-      className: "buttons",
+      className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
       value: this.state.randomOptions[2]
     }, this.state.randomOptions[2]), /*#__PURE__*/_react.default.createElement("button", {
       style: this.state.bgColor,
-      className: "buttons",
+      className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
       value: this.state.randomOptions[3]
     }, this.state.randomOptions[3]))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
       onClick: e => {
@@ -29902,12 +29900,12 @@ class Country extends _react.Component {
       },
       type: "button",
       className: "next"
-    }, "Next"))), /*#__PURE__*/_react.default.createElement("hr", null));
+    }, "Next"))));
   }
 
 }
 
-var _default = Country;
+var _default = App;
 exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
