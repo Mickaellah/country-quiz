@@ -18,8 +18,8 @@ class Country extends Component {
                 ` is the capital of ?`
             ]
         }
-        this.getRandomCountry = this.getRandomCountry.bind(this);
-        this.checkWin = this.checkWin.bind(this);
+        this.getRandomCountries = this.getRandomCountries.bind(this);
+        this.checkCorrectAnswer = this.checkCorrectAnswer.bind(this);
     }
 
     componentDidMount() {
@@ -27,10 +27,10 @@ class Country extends Component {
         fetch(apiUrl)
         .then(data => data.json())
         .then(countries => this.setState({countries}))
-        .then(this.getRandomCountry)
+        .then(this.getRandomCountries)
     }
 
-    getRandomCountry() {
+    getRandomCountries() {
         const random = this.state.countries[Math.floor(Math.random() *this.state.countries.length)];
         const randomOpt1 = this.state.countries[Math.floor(Math.random()* this.state.countries.length)];
         const randomOpt2 = this.state.countries[Math.floor(Math.random()* this.state.countries.length)];
@@ -50,7 +50,7 @@ class Country extends Component {
         })
     }
 
-    checkWin(e) {
+    checkCorrectAnswer(e) {
         this.setState({
             disableFieldset: true
         })
@@ -68,14 +68,15 @@ class Country extends Component {
                 bgColor: {backgroundColor: '#FF8A65'}
             })
         }
+
         setTimeout(()=>{
-            this.getRandomCountry();
+            this.getRandomCountries();
             this.setState({
                 userIsWin: '',
                 disableFieldset: false,
                 bgColor: {backgroundColor: 'white'}
         })
-        }, 2000)
+        }, 3000)
 
     }
 
@@ -87,7 +88,7 @@ render() {
                     <img className="image" src={Image} alt={Image} />
                 </div>
                 <div>
-                    <button className="random" onClick={this.getRandomCountry} hidden>Random</button>
+                    <button className="random" onClick={this.getRandomCountries} hidden>Random</button>
                     <div>
                         <img src={this.state.randomCountry.flag} alt="Country flag" />
                     </div>
@@ -101,7 +102,7 @@ render() {
                     </h2>
                 </div>
                 <fieldset disabled={this.state.disableFieldset}>
-                    <form onClick={e => this.checkWin(e)}>
+                    <form onClick={e => this.checkCorrectAnswer(e)}>
                         <button 
                             style={this.state.bgColor}
                             className={`buttons ${this.state.goodGuess ? 'green' : 'red'}`} value={this.state.randomOptions[0]}>{this.state.randomOptions[0]}</button>

@@ -33890,18 +33890,18 @@ class Country extends _react.Component {
       },
       question: ['Which country does this flag belong to ?', ` is the capital of ?`]
     };
-    this.getRandomCountry = this.getRandomCountry.bind(this);
-    this.checkWin = this.checkWin.bind(this);
+    this.getRandomCountries = this.getRandomCountries.bind(this);
+    this.checkCorrectAnswer = this.checkCorrectAnswer.bind(this);
   }
 
   componentDidMount() {
     const apiUrl = "https://restcountries.eu/rest/v2/all";
     fetch(apiUrl).then(data => data.json()).then(countries => this.setState({
       countries
-    })).then(this.getRandomCountry);
+    })).then(this.getRandomCountries);
   }
 
-  getRandomCountry() {
+  getRandomCountries() {
     const random = this.state.countries[Math.floor(Math.random() * this.state.countries.length)];
     const randomOpt1 = this.state.countries[Math.floor(Math.random() * this.state.countries.length)];
     const randomOpt2 = this.state.countries[Math.floor(Math.random() * this.state.countries.length)];
@@ -33919,7 +33919,7 @@ class Country extends _react.Component {
     });
   }
 
-  checkWin(e) {
+  checkCorrectAnswer(e) {
     this.setState({
       disableFieldset: true
     });
@@ -33944,7 +33944,7 @@ class Country extends _react.Component {
     }
 
     setTimeout(() => {
-      this.getRandomCountry();
+      this.getRandomCountries();
       this.setState({
         userIsWin: '',
         disableFieldset: false,
@@ -33952,7 +33952,7 @@ class Country extends _react.Component {
           backgroundColor: 'white'
         }
       });
-    }, 2000);
+    }, 3000);
   }
 
   render() {
@@ -33964,7 +33964,7 @@ class Country extends _react.Component {
       alt: _undraw_adventure_4hum.default
     })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
       className: "random",
-      onClick: this.getRandomCountry,
+      onClick: this.getRandomCountries,
       hidden: true
     }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
       src: this.state.randomCountry.flag,
@@ -33972,7 +33972,7 @@ class Country extends _react.Component {
     })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, this.state.question[Math.floor(Math.random() * this.state.question.length)])), /*#__PURE__*/_react.default.createElement("h2", null, this.state.userIsWin === 'Win' ? `You got ${this.state.goodGuess} correct answer ` : '')), /*#__PURE__*/_react.default.createElement("fieldset", {
       disabled: this.state.disableFieldset
     }, /*#__PURE__*/_react.default.createElement("form", {
-      onClick: e => this.checkWin(e)
+      onClick: e => this.checkCorrectAnswer(e)
     }, /*#__PURE__*/_react.default.createElement("button", {
       style: this.state.bgColor,
       className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
@@ -34108,7 +34108,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63387" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64058" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
