@@ -21,9 +21,17 @@ img {
 }
 
 .main {
+    position: relative;
     background-color: white;
     border-radius: 10px;
     padding: 32px;
+}
+
+.image {
+    width: 200px;
+    position: absolute;
+    top: -13%;
+    left: 55%;
 }
 
 fieldset {
@@ -34,10 +42,6 @@ form {
     display: flex;
     flex-direction: column;
 }
-
-/* .red {
-    background-color: red;
-} */
 
 .next {
     padding-block: 12px;
@@ -51,10 +55,6 @@ form {
 
 }
 
-/* .green {
-    background-color: green;
-} */
-
 button {
     cursor: pointer;
 }
@@ -64,7 +64,6 @@ button {
     border-radius: 5px;
     padding-block: 8px;
     border: 1px solid lightgray;
-    background-color: wheat;
 }
 
 .green {

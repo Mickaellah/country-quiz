@@ -29772,7 +29772,9 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"App.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"img/undraw_adventure_4hum 1.svg":[function(require,module,exports) {
+module.exports = "/undraw_adventure_4hum 1.fc639ec4.svg";
+},{}],"Components/GetRandomCountry.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29782,11 +29784,15 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _undraw_adventure_4hum = _interopRequireDefault(require("../img/undraw_adventure_4hum 1.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-class App extends _react.Component {
+class Country extends _react.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29798,7 +29804,8 @@ class App extends _react.Component {
       goodGuess: 0,
       bgColor: {
         backgroundColor: 'white'
-      }
+      },
+      question: ['Which country does this flag belong to ?', ` is the capital of ?`]
     };
     this.getRandomCountry = this.getRandomCountry.bind(this);
     this.checkWin = this.checkWin.bind(this);
@@ -29824,7 +29831,8 @@ class App extends _react.Component {
       randomCountry: random,
       randomOptions: randomOptions,
       userIsWin: '',
-      disableFieldset: false
+      disableFieldset: false,
+      question: ['Which country does this flag belong to ?', `${this.state.randomCountry.capital} is the capital of ?`]
     });
   }
 
@@ -29867,14 +29875,18 @@ class App extends _react.Component {
   render() {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
       className: "main"
-    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      className: "image",
+      src: _undraw_adventure_4hum.default,
+      alt: _undraw_adventure_4hum.default
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
       className: "random",
       onClick: this.getRandomCountry,
       hidden: true
     }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
       src: this.state.randomCountry.flag,
       alt: "Country flag"
-    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")), /*#__PURE__*/_react.default.createElement("h2", null, this.state.userIsWin === 'Win' ? `You got ${this.state.goodGuess} correct answer ` : '')), /*#__PURE__*/_react.default.createElement("fieldset", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, this.state.question[Math.floor(Math.random() * this.state.question.length)])), /*#__PURE__*/_react.default.createElement("h2", null, this.state.userIsWin === 'Win' ? `You got ${this.state.goodGuess} correct answer ` : '')), /*#__PURE__*/_react.default.createElement("fieldset", {
       disabled: this.state.disableFieldset
     }, /*#__PURE__*/_react.default.createElement("form", {
       onClick: e => this.checkWin(e)
@@ -29905,9 +29917,29 @@ class App extends _react.Component {
 
 }
 
+var _default = Country;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../img/undraw_adventure_4hum 1.svg":"img/undraw_adventure_4hum 1.svg"}],"App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _GetRandomCountry = _interopRequireDefault(require("./Components/GetRandomCountry"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function App() {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_GetRandomCountry.default, null));
+}
+
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Components/GetRandomCountry":"Components/GetRandomCountry.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -29947,7 +29979,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58653" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63387" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
