@@ -34019,7 +34019,9 @@ var _reactRouterDom = require("react-router-dom");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Result(props) {
+function Result({
+  goodGuess
+}) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
@@ -34028,7 +34030,7 @@ function Result(props) {
     alt: "Result"
   })), /*#__PURE__*/_react.default.createElement("h2", {
     className: "heading"
-  }, "Results"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "You got ", props.goodGuess, " correct answers.")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "Results"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "You got ", goodGuess, " correct answers.")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
