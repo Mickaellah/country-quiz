@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Image from '../img/undraw_adventure_4hum 1.svg';
+import {Link} from 'react-router-dom';
 
 class Country extends Component {
     constructor(props) {
@@ -116,9 +117,11 @@ render() {
                     </form>
                 </fieldset>
                 <div>
-                    <button onClick={(e) => {
-                        console.log('I am clicked');
-                    }} type="button" className="next">Next</button>
+                    <Link to="/result">
+                        <button type="button" className="next">
+                            Next
+                        </button>
+                    </Link>
                 </div> 
             </div>
         </>

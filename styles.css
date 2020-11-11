@@ -24,7 +24,8 @@ img {
     position: relative;
     background-color: white;
     border-radius: 10px;
-    padding: 32px;
+    padding-block: 32px;
+    padding-inline: 48px;
 }
 
 .image {
@@ -43,6 +44,17 @@ form {
     flex-direction: column;
 }
 
+button {
+    cursor: pointer;
+}
+
+.buttons {
+    margin-block-start: 32px;
+    border-radius: 8px;
+    padding-block: 12px;
+    border: 1px solid lightgray;
+}
+
 .next {
     padding-block: 12px;
     padding-inline: 24px;
@@ -51,25 +63,42 @@ form {
     background-color: orange;
     color: white;
     margin-block-start: 16px;
-    margin-inline-start: 77%;
-
+    margin-inline-start: 70%;
 }
 
-button {
-    cursor: pointer;
+.next:hover {
+    background-color: orangered;
 }
 
-.buttons {
-    margin-block-start: 32px;
-    border-radius: 5px;
-    padding-block: 8px;
-    border: 1px solid lightgray;
-}
-
-.green {
+/* .green {
     background-color: green;
 }
 
 .red {
     background-color: red;
+} */
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    padding-block: 32px;
+    padding-inline: 48px;
+    text-align: center;
+}
+
+.result {
+    width: 250px;
+}
+
+.heading {
+    font-size: 24px;
+    color: #2F527B;
+}
+
+.try_again {
+    padding-inline: 24px;
+    padding-block: 10px;
+    border: 2px solid gray;
+    border-radius: 8px;
+    background-color: white;
 }
