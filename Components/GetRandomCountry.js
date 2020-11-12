@@ -3,7 +3,10 @@ import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
 class Country extends Component {
+    
     render() {
+        const filteredQuestion = this.props.question.map((question) => { return question}).filter((question) => question.includes('belong'));
+
         return (
             <>
                 <div className="main">
@@ -11,43 +14,41 @@ class Country extends Component {
                         <img className="image" src={Image} alt={Image} />
                     </div>
                     <div>
-                        {/* <button className="random" onClick={this.props.getRandomCountries} hidden>Random</button> */}
                         <div>
-                            <img src={this.props.randomCountry.flag} alt="Country flag" /> 
+                            {filteredQuestion
+                                ? <img src={this.props.randomCountry.flag} alt="Country flag" /> 
+                                : ''}
                         </div>
                         <div>
                             <h3>
                                 {this.props.question[Math.floor(Math.random() * this.props.question.length)]}
                             </h3>
                         </div>
-                        <h2>
-                            {this.props.userIsWin === 'Win' ? `You got ${this.props.goodGuess} correct answer ` : ''}
-                        </h2>
                     </div>
                     <fieldset disabled={this.props.disableFieldset}>
                         <form onClick={e => this.props.checkCorrectAnswer(e)}>
                             <button 
                                 style={this.props.bgColor}
-                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[0]}><span>A</span> <p>{this.props.randomOptions[0]}</p>
+                                className="buttons" value={this.props.randomOptions[0]}><span>A</span> <p>{this.props.randomOptions[0]}</p>
                             </button>
                             <button 
                                 style={this.props.bgColor}
-                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[1]}><span>B</span> <p>{this.props.randomOptions[1]}</p>
+                                className="buttons" value={this.props.randomOptions[1]}><span>B</span> <p>{this.props.randomOptions[1]}</p>
                             </button>
                             <button 
                                 style={this.props.bgColor}
-                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[2]}><span>C</span> <p>{this.props.randomOptions[2]}</p>
+                                className="buttons" value={this.props.randomOptions[2]}><span>C</span> <p>{this.props.randomOptions[2]}</p>
                             </button>
                             <button 
+                                
                                 style={this.props.bgColor}
-                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[3]}><span>D</span> <p>{this.props.randomOptions[3]}</p>
+                                className="buttons" value={this.props.randomOptions[3]}><span>D</span> <p>{this.props.randomOptions[3]}</p>
                             </button>
                         </form>
                     </fieldset>
                     <div>
-                        {
-                        this.props.goodGuess 
-                            ? <Link exact to='/'>
+                        {this.props.isThereCorrectAnswer
+                            ? <Link to='/'>
                                 <button 
                                     type="button" 
                                     onClick={this.props.getRandomCountries} 
@@ -57,7 +58,7 @@ class Country extends Component {
                             </Link>
                             : <Link to="/result">
                                 <button 
-                                    type="button"  
+                                    type="button"
                                     className="next">
                                     Next
                                 </button>

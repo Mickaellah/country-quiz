@@ -33877,37 +33877,39 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 class Country extends _react.Component {
   render() {
+    const filteredQuestion = this.props.question.map(question => {
+      return question;
+    }).filter(question => question.includes('belong'));
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
       className: "main"
     }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
       className: "image",
       src: _undraw_adventure_4hum.default,
       alt: _undraw_adventure_4hum.default
-    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, filteredQuestion ? /*#__PURE__*/_react.default.createElement("img", {
       src: this.props.randomCountry.flag,
       alt: "Country flag"
-    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, this.props.question[Math.floor(Math.random() * this.props.question.length)])), /*#__PURE__*/_react.default.createElement("h2", null, this.props.userIsWin === 'Win' ? `You got ${this.props.goodGuess} correct answer ` : '')), /*#__PURE__*/_react.default.createElement("fieldset", {
+    }) : ''), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, this.props.question[Math.floor(Math.random() * this.props.question.length)]))), /*#__PURE__*/_react.default.createElement("fieldset", {
       disabled: this.props.disableFieldset
     }, /*#__PURE__*/_react.default.createElement("form", {
       onClick: e => this.props.checkCorrectAnswer(e)
     }, /*#__PURE__*/_react.default.createElement("button", {
       style: this.props.bgColor,
-      className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
+      className: "buttons",
       value: this.props.randomOptions[0]
     }, /*#__PURE__*/_react.default.createElement("span", null, "A"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[0])), /*#__PURE__*/_react.default.createElement("button", {
       style: this.props.bgColor,
-      className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
+      className: "buttons",
       value: this.props.randomOptions[1]
     }, /*#__PURE__*/_react.default.createElement("span", null, "B"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[1])), /*#__PURE__*/_react.default.createElement("button", {
       style: this.props.bgColor,
-      className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
+      className: "buttons",
       value: this.props.randomOptions[2]
     }, /*#__PURE__*/_react.default.createElement("span", null, "C"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[2])), /*#__PURE__*/_react.default.createElement("button", {
       style: this.props.bgColor,
-      className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
+      className: "buttons",
       value: this.props.randomOptions[3]
-    }, /*#__PURE__*/_react.default.createElement("span", null, "D"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[3])))), /*#__PURE__*/_react.default.createElement("div", null, this.props.goodGuess ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      exact: true,
+    }, /*#__PURE__*/_react.default.createElement("span", null, "D"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[3])))), /*#__PURE__*/_react.default.createElement("div", null, this.props.isThereCorrectAnswer ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: "/"
     }, /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
@@ -33937,6 +33939,8 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _undraw_adventure_4hum = _interopRequireDefault(require("../img/undraw_adventure_4hum 1.svg"));
+
 var _undraw_winners_ao2o = _interopRequireDefault(require("../img/undraw_winners_ao2o 2.svg"));
 
 var _reactRouterDom = require("react-router-dom");
@@ -33952,12 +33956,20 @@ class Result extends _react.Component {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
       className: "container"
     }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      className: "logo",
+      src: _undraw_adventure_4hum.default,
+      alt: "Logo"
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
       className: "result",
       src: _undraw_winners_ao2o.default,
       alt: "Result"
     })), /*#__PURE__*/_react.default.createElement("h2", {
       className: "heading"
-    }, "Results"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "You got ", this.props.goodGuess, " correct answers.")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    }, "Results"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", {
+      className: "score"
+    }, "You got ", /*#__PURE__*/_react.default.createElement("span", {
+      className: "good_guess"
+    }, this.props.goodGuess), " correct answers.")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: "/"
     }, /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
@@ -33970,7 +33982,7 @@ class Result extends _react.Component {
 
 var _default = Result;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../img/undraw_winners_ao2o 2.svg":"img/undraw_winners_ao2o 2.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../img/undraw_adventure_4hum 1.svg":"img/undraw_adventure_4hum 1.svg","../img/undraw_winners_ao2o 2.svg":"img/undraw_winners_ao2o 2.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34001,6 +34013,7 @@ class App extends _react.Component {
       randomOptions: [],
       userIsWin: '',
       disableFieldset: false,
+      isThereCorrectAnswer: false,
       goodGuess: 0,
       bgColor: {
         backgroundColor: 'white'
@@ -34027,10 +34040,14 @@ class App extends _react.Component {
     randomOptions.sort(() => {
       return 0.5 - Math.random();
     });
+    randomOptions.sort(() => {
+      return 1 - Math.random();
+    });
     this.setState({
       randomCountry: random,
       randomOptions: randomOptions,
       userIsWin: '',
+      isThereCorrectAnswer: false,
       disableFieldset: false,
       question: ['Which country does this flag belong to ?', `${this.state.randomCountry.capital} is the capital of ?`]
     });
@@ -34038,7 +34055,8 @@ class App extends _react.Component {
 
   checkCorrectAnswer(e) {
     this.setState({
-      disableFieldset: true
+      disableFieldset: true,
+      isThereCorrectAnswer: false
     });
     const winCountry = this.state.randomCountry.name;
     const userGuess = e.target.value;
@@ -34061,7 +34079,6 @@ class App extends _react.Component {
     }
 
     setTimeout(() => {
-      // this.getRandomCountries();
       this.setState({
         userIsWin: '',
         disableFieldset: false,
@@ -34069,14 +34086,15 @@ class App extends _react.Component {
           backgroundColor: 'white'
         }
       });
-    }, 3000);
+    }, 500);
   }
 
   render() {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
       path: "/result"
     }, /*#__PURE__*/_react.default.createElement(_Result.default, {
-      goodGuess: this.state.goodGuess
+      goodGuess: this.state.goodGuess,
+      getRandomCountries: this.getRandomCountries
     })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
       path: "/"
     }, /*#__PURE__*/_react.default.createElement(_GetRandomCountry.default, {
@@ -34088,7 +34106,9 @@ class App extends _react.Component {
       goodGuess: this.state.goodGuess,
       disableFieldset: this.state.disableFieldset,
       randomOptions: this.state.randomOptions,
-      randomCountry: this.state.randomCountry
+      randomCountry: this.state.randomCountry,
+      isThereCorrectAnswer: this.state.isThereCorrectAnswer,
+      handleClick: this.handleClick
     })))));
   }
 
@@ -34136,7 +34156,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50488" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59345" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

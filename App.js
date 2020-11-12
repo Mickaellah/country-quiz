@@ -18,6 +18,7 @@ class App extends Component {
             randomOptions: [],
             userIsWin: '',
             disableFieldset: false,
+            isThereCorrectAnswer: false,
             goodGuess: 0,
             bgColor: {backgroundColor: 'white'},
             question: [
@@ -44,11 +45,13 @@ class App extends Component {
         const randomOpt3 = this.state.countries[Math.floor(Math.random()* this.state.countries.length)];
         const randomOptions = [random.name, randomOpt1.name, randomOpt2.name, randomOpt3.name];
         randomOptions.sort(() => { return 0.5 - Math.random() });
+        randomOptions.sort(() => { return 1 - Math.random()});
 
         this.setState({
             randomCountry: random,
             randomOptions: randomOptions,
             userIsWin: '',
+            isThereCorrectAnswer: false,
             disableFieldset: false,
             question: [
                 'Which country does this flag belong to ?',
@@ -59,7 +62,8 @@ class App extends Component {
 
     checkCorrectAnswer(e) {
         this.setState({
-            disableFieldset: true
+            disableFieldset: true,
+            isThereCorrectAnswer: false
         })
         const winCountry = this.state.randomCountry.name;
         const userGuess = e.target.value;
@@ -77,13 +81,12 @@ class App extends Component {
         }
 
         setTimeout(()=>{
-            // this.getRandomCountries();
             this.setState({
                 userIsWin: '',
                 disableFieldset: false,
-                bgColor: {backgroundColor: 'white'}
+                bgColor: {backgroundColor: 'white'},
         })
-        }, 3000)
+        }, 500)
 
     }
 
@@ -95,6 +98,7 @@ class App extends Component {
                         <Route path="/result">
                             <Result 
                                 goodGuess={this.state.goodGuess}
+                                getRandomCountries={this.getRandomCountries}
                             />
                         </Route>
                         <Route path="/">
@@ -108,6 +112,8 @@ class App extends Component {
                                 disableFieldset={this.state.disableFieldset}
                                 randomOptions={this.state.randomOptions}
                                 randomCountry={this.state.randomCountry}
+                                isThereCorrectAnswer={this.state.isThereCorrectAnswer}
+                                handleClick={this.handleClick}
                             />
                         </Route>
                     </Switch>

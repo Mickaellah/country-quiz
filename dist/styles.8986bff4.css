@@ -36,6 +36,13 @@ img {
     left: 55%;
 }
 
+.logo {
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: 57.8%;
+}
+
 fieldset {
     border: none;
 }
@@ -96,21 +103,37 @@ span {
     text-align: center;
 }
 
-.result {
-    width: 250px;
-}
-
 .heading {
     font-size: 24px;
     color: #2F527B;
+    margin-block-start: 64px;
+}
+
+.result {
+    width: 250px;
+    margin-block-start: 32px;
+}
+
+.good_guess {
+    color: greenyellow;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.score {
+    margin-block-start: 48px;
 }
 
 .try_again {
     padding-inline: 24px;
     padding-block: 10px;
-    border: 2px solid gray;
+    border: 2px solid #2F527B;
     border-radius: 8px;
     background-color: white;
+    margin-block-start: 32px;
+    color: #2F527B;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 /*# sourceMappingURL=/styles.8986bff4.css.map */
