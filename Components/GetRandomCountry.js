@@ -17,7 +17,8 @@ class Country extends Component {
                         <div>
                             {filteredQuestion
                                 ? <img src={this.props.randomCountry.flag} alt="Country flag" /> 
-                                : ''}
+                                : ''
+                            }
                         </div>
                         <div>
                             <h3>
@@ -40,7 +41,6 @@ class Country extends Component {
                                 className="buttons" value={this.props.randomOptions[2]}><span>C</span> <p>{this.props.randomOptions[2]}</p>
                             </button>
                             <button 
-                                
                                 style={this.props.bgColor}
                                 className="buttons" value={this.props.randomOptions[3]}><span>D</span> <p>{this.props.randomOptions[3]}</p>
                             </button>
@@ -48,7 +48,7 @@ class Country extends Component {
                     </fieldset>
                     <div>
                         {this.props.isThereCorrectAnswer
-                            ? <Link to='/'>
+                            ? <Link exact to='/'>
                                 <button 
                                     type="button" 
                                     onClick={this.props.getRandomCountries} 

@@ -33910,6 +33910,7 @@ class Country extends _react.Component {
       className: "buttons",
       value: this.props.randomOptions[3]
     }, /*#__PURE__*/_react.default.createElement("span", null, "D"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[3])))), /*#__PURE__*/_react.default.createElement("div", null, this.props.isThereCorrectAnswer ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      exact: true,
       to: "/"
     }, /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
