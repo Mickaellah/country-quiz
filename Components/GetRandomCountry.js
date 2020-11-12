@@ -11,7 +11,7 @@ class Country extends Component {
                         <img className="image" src={Image} alt={Image} />
                     </div>
                     <div>
-                        <button className="random" onClick={this.props.getRandomCountries} hidden>Random</button>
+                        {/* <button className="random" onClick={this.props.getRandomCountries} hidden>Random</button> */}
                         <div>
                             <img src={this.props.randomCountry.flag} alt="Country flag" /> 
                         </div>
@@ -45,11 +45,24 @@ class Country extends Component {
                         </form>
                     </fieldset>
                     <div>
-                        <Link to="/result">
-                            <button type="button" className="next">
-                                Next
-                            </button>
-                        </Link>
+                        {
+                        this.props.goodGuess 
+                            ? <Link exact to='/'>
+                                <button 
+                                    type="button" 
+                                    onClick={this.props.getRandomCountries} 
+                                    className="next">
+                                    Next
+                                </button>
+                            </Link>
+                            : <Link to="/result">
+                                <button 
+                                    type="button"  
+                                    className="next">
+                                    Next
+                                </button>
+                            </Link>
+                        }
                     </div> 
                 </div>
             </>

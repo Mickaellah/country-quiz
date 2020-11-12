@@ -15,7 +15,7 @@ class Result extends Component {
                         <p>You got {this.props.goodGuess} correct answers.</p>
                     </div>
                     <Link to='/'>
-                        <button type="button" className="try_again">Try again</button>
+                        <button type="button" onClick={this.props.getRandomCountries} className="try_again">Try again</button>
                     </Link>
                 </div>
             </>

@@ -33883,11 +33883,7 @@ class Country extends _react.Component {
       className: "image",
       src: _undraw_adventure_4hum.default,
       alt: _undraw_adventure_4hum.default
-    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
-      className: "random",
-      onClick: this.props.getRandomCountries,
-      hidden: true
-    }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
       src: this.props.randomCountry.flag,
       alt: "Country flag"
     })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, this.props.question[Math.floor(Math.random() * this.props.question.length)])), /*#__PURE__*/_react.default.createElement("h2", null, this.props.userIsWin === 'Win' ? `You got ${this.props.goodGuess} correct answer ` : '')), /*#__PURE__*/_react.default.createElement("fieldset", {
@@ -33910,7 +33906,14 @@ class Country extends _react.Component {
       style: this.props.bgColor,
       className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
       value: this.props.randomOptions[3]
-    }, /*#__PURE__*/_react.default.createElement("span", null, "D"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[3])))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    }, /*#__PURE__*/_react.default.createElement("span", null, "D"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[3])))), /*#__PURE__*/_react.default.createElement("div", null, this.props.goodGuess ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      exact: true,
+      to: "/"
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      type: "button",
+      onClick: this.props.getRandomCountries,
+      className: "next"
+    }, "Next")) : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: "/result"
     }, /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
@@ -33958,6 +33961,7 @@ class Result extends _react.Component {
       to: "/"
     }, /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
+      onClick: this.props.getRandomCountries,
       className: "try_again"
     }, "Try again"))));
   }
@@ -34057,7 +34061,7 @@ class App extends _react.Component {
     }
 
     setTimeout(() => {
-      this.getRandomCountries();
+      // this.getRandomCountries();
       this.setState({
         userIsWin: '',
         disableFieldset: false,

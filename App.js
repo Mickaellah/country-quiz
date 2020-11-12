@@ -77,7 +77,7 @@ class App extends Component {
         }
 
         setTimeout(()=>{
-            this.getRandomCountries();
+            // this.getRandomCountries();
             this.setState({
                 userIsWin: '',
                 disableFieldset: false,
