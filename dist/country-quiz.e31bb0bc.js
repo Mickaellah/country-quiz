@@ -33876,6 +33876,119 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 class Country extends _react.Component {
+  render() {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "main"
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      className: "image",
+      src: _undraw_adventure_4hum.default,
+      alt: _undraw_adventure_4hum.default
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+      className: "random",
+      onClick: this.props.getRandomCountries,
+      hidden: true
+    }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      src: this.props.randomCountry.flag,
+      alt: "Country flag"
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, this.props.question[Math.floor(Math.random() * this.props.question.length)])), /*#__PURE__*/_react.default.createElement("h2", null, this.props.userIsWin === 'Win' ? `You got ${this.props.goodGuess} correct answer ` : '')), /*#__PURE__*/_react.default.createElement("fieldset", {
+      disabled: this.props.disableFieldset
+    }, /*#__PURE__*/_react.default.createElement("form", {
+      onClick: e => this.props.checkCorrectAnswer(e)
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      style: this.props.bgColor,
+      className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
+      value: this.props.randomOptions[0]
+    }, this.props.randomOptions[0]), /*#__PURE__*/_react.default.createElement("button", {
+      style: this.props.bgColor,
+      className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
+      value: this.props.randomOptions[1]
+    }, this.props.randomOptions[1]), /*#__PURE__*/_react.default.createElement("button", {
+      style: this.props.bgColor,
+      className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
+      value: this.props.randomOptions[2]
+    }, this.props.randomOptions[2]), /*#__PURE__*/_react.default.createElement("button", {
+      style: this.props.bgColor,
+      className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
+      value: this.props.randomOptions[3]
+    }, this.props.randomOptions[3]))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "/result"
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      type: "button",
+      className: "next"
+    }, "Next")))));
+  }
+
+}
+
+var _default = Country;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../img/undraw_adventure_4hum 1.svg":"img/undraw_adventure_4hum 1.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"img/undraw_winners_ao2o 2.svg":[function(require,module,exports) {
+module.exports = "/undraw_winners_ao2o 2.c0e610b1.svg";
+},{}],"Components/Result.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _undraw_winners_ao2o = _interopRequireDefault(require("../img/undraw_winners_ao2o 2.svg"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+class Result extends _react.Component {
+  render() {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "container"
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      className: "result",
+      src: _undraw_winners_ao2o.default,
+      alt: "Result"
+    })), /*#__PURE__*/_react.default.createElement("h2", {
+      className: "heading"
+    }, "Results"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "You got ", this.props.goodGuess, " correct answers.")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "/"
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      type: "button",
+      className: "try_again"
+    }, "Try again"))));
+  }
+
+}
+
+var _default = Result;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../img/undraw_winners_ao2o 2.svg":"img/undraw_winners_ao2o 2.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _GetRandomCountry = _interopRequireDefault(require("./Components/GetRandomCountry"));
+
+var _Result = _interopRequireDefault(require("./Components/Result"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+class App extends _react.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33956,114 +34069,25 @@ class Country extends _react.Component {
   }
 
   render() {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-      className: "main"
-    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
-      className: "image",
-      src: _undraw_adventure_4hum.default,
-      alt: _undraw_adventure_4hum.default
-    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
-      className: "random",
-      onClick: this.getRandomCountries,
-      hidden: true
-    }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
-      src: this.state.randomCountry.flag,
-      alt: "Country flag"
-    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, this.state.question[Math.floor(Math.random() * this.state.question.length)])), /*#__PURE__*/_react.default.createElement("h2", null, this.state.userIsWin === 'Win' ? `You got ${this.state.goodGuess} correct answer ` : '')), /*#__PURE__*/_react.default.createElement("fieldset", {
-      disabled: this.state.disableFieldset
-    }, /*#__PURE__*/_react.default.createElement("form", {
-      onClick: e => this.checkCorrectAnswer(e)
-    }, /*#__PURE__*/_react.default.createElement("button", {
-      style: this.state.bgColor,
-      className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
-      value: this.state.randomOptions[0]
-    }, this.state.randomOptions[0]), /*#__PURE__*/_react.default.createElement("button", {
-      style: this.state.bgColor,
-      className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
-      value: this.state.randomOptions[1]
-    }, this.state.randomOptions[1]), /*#__PURE__*/_react.default.createElement("button", {
-      style: this.state.bgColor,
-      className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
-      value: this.state.randomOptions[2]
-    }, this.state.randomOptions[2]), /*#__PURE__*/_react.default.createElement("button", {
-      style: this.state.bgColor,
-      className: `buttons ${this.state.goodGuess ? 'green' : 'red'}`,
-      value: this.state.randomOptions[3]
-    }, this.state.randomOptions[3]))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: "/result"
-    }, /*#__PURE__*/_react.default.createElement("button", {
-      type: "button",
-      className: "next"
-    }, "Next")))));
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+      path: "/result"
+    }, /*#__PURE__*/_react.default.createElement(_Result.default, {
+      goodGuess: this.state.goodGuess
+    })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+      path: "/"
+    }, /*#__PURE__*/_react.default.createElement(_GetRandomCountry.default, {
+      getRandomCountries: this.getRandomCountries,
+      checkCorrectAnswer: this.checkCorrectAnswer,
+      countries: this.state.countries,
+      question: this.state.question,
+      bgColor: this.state.bgColor,
+      goodGuess: this.state.goodGuess,
+      disableFieldset: this.state.disableFieldset,
+      randomOptions: this.state.randomOptions,
+      randomCountry: this.state.randomCountry
+    })))));
   }
 
-}
-
-var _default = Country;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../img/undraw_adventure_4hum 1.svg":"img/undraw_adventure_4hum 1.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"img/undraw_winners_ao2o 2.svg":[function(require,module,exports) {
-module.exports = "/undraw_winners_ao2o 2.c0e610b1.svg";
-},{}],"Components/Result.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _undraw_winners_ao2o = _interopRequireDefault(require("../img/undraw_winners_ao2o 2.svg"));
-
-var _reactRouterDom = require("react-router-dom");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Result({
-  goodGuess
-}) {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
-    className: "result",
-    src: _undraw_winners_ao2o.default,
-    alt: "Result"
-  })), /*#__PURE__*/_react.default.createElement("h2", {
-    className: "heading"
-  }, "Results"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "You got ", goodGuess, " correct answers.")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    className: "try_again"
-  }, "Try again"))));
-}
-
-var _default = Result;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../img/undraw_winners_ao2o 2.svg":"img/undraw_winners_ao2o 2.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _GetRandomCountry = _interopRequireDefault(require("./Components/GetRandomCountry"));
-
-var _Result = _interopRequireDefault(require("./Components/Result"));
-
-var _reactRouterDom = require("react-router-dom");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function App() {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/result"
-  }, /*#__PURE__*/_react.default.createElement(_Result.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/"
-  }, /*#__PURE__*/_react.default.createElement(_GetRandomCountry.default, null)))));
 }
 
 var _default = App;
@@ -34108,7 +34132,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64058" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50488" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
