@@ -13,6 +13,7 @@ h1 {
 h3 {
     color: #2F527B;
     font-size: 24px;
+    margin: 0;
 }
 
 img {
@@ -42,6 +43,7 @@ fieldset {
 form {
     display: flex;
     flex-direction: column;
+    padding: 0;
 }
 
 button {
@@ -49,10 +51,18 @@ button {
 }
 
 .buttons {
-    margin-block-start: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-block-start: 16px;
     border-radius: 8px;
     padding-block: 12px;
-    border: 1px solid lightgray;
+    border: 2px solid #6066D0;
+    color: #6066D0;
+}
+
+span {
+    margin-block-start: 15px;
 }
 
 .next {

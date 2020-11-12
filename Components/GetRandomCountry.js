@@ -13,7 +13,7 @@ class Country extends Component {
                     <div>
                         <button className="random" onClick={this.props.getRandomCountries} hidden>Random</button>
                         <div>
-                            <img src={this.props.randomCountry.flag} alt="Country flag" />
+                            <img src={this.props.randomCountry.flag} alt="Country flag" /> 
                         </div>
                         <div>
                             <h3>
@@ -28,16 +28,20 @@ class Country extends Component {
                         <form onClick={e => this.props.checkCorrectAnswer(e)}>
                             <button 
                                 style={this.props.bgColor}
-                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[0]}>{this.props.randomOptions[0]}</button>
+                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[0]}><span>A</span> <p>{this.props.randomOptions[0]}</p>
+                            </button>
                             <button 
                                 style={this.props.bgColor}
-                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[1]}>{this.props.randomOptions[1]}</button>
+                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[1]}><span>B</span> <p>{this.props.randomOptions[1]}</p>
+                            </button>
                             <button 
                                 style={this.props.bgColor}
-                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[2]}>{this.props.randomOptions[2]}</button>
+                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[2]}><span>C</span> <p>{this.props.randomOptions[2]}</p>
+                            </button>
                             <button 
                                 style={this.props.bgColor}
-                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[3]}>{this.props.randomOptions[3]}</button>
+                                className={`buttons ${this.props.goodGuess ? 'green' : 'red'}`} value={this.props.randomOptions[3]}><span>D</span> <p>{this.props.randomOptions[3]}</p>
+                            </button>
                         </form>
                     </fieldset>
                     <div>

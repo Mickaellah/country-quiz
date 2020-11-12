@@ -33898,19 +33898,19 @@ class Country extends _react.Component {
       style: this.props.bgColor,
       className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
       value: this.props.randomOptions[0]
-    }, this.props.randomOptions[0]), /*#__PURE__*/_react.default.createElement("button", {
+    }, /*#__PURE__*/_react.default.createElement("span", null, "A"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[0])), /*#__PURE__*/_react.default.createElement("button", {
       style: this.props.bgColor,
       className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
       value: this.props.randomOptions[1]
-    }, this.props.randomOptions[1]), /*#__PURE__*/_react.default.createElement("button", {
+    }, /*#__PURE__*/_react.default.createElement("span", null, "B"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[1])), /*#__PURE__*/_react.default.createElement("button", {
       style: this.props.bgColor,
       className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
       value: this.props.randomOptions[2]
-    }, this.props.randomOptions[2]), /*#__PURE__*/_react.default.createElement("button", {
+    }, /*#__PURE__*/_react.default.createElement("span", null, "C"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[2])), /*#__PURE__*/_react.default.createElement("button", {
       style: this.props.bgColor,
       className: `buttons ${this.props.goodGuess ? 'green' : 'red'}`,
       value: this.props.randomOptions[3]
-    }, this.props.randomOptions[3]))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    }, /*#__PURE__*/_react.default.createElement("span", null, "D"), " ", /*#__PURE__*/_react.default.createElement("p", null, this.props.randomOptions[3])))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: "/result"
     }, /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
