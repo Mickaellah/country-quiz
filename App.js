@@ -9,25 +9,33 @@ import {
 } from 'react-router-dom';
 
 function App() {
+    const [ countries, setCountries ] = useState([]);
     const [ randomCountry, setRandomCountry ] = useState({});
     const [ randomOptions, setRandomOptions ] = useState([]);
-    const [ userIsWin, setUserWin ] = useState('');
+    const [ userIsWin, setUserWin ] = useState(false);
     const [ disableFieldset, setDisableFieldset ] = useState(false);
     const [ goodGuess, setGoodGuess ] = useState(0);
     const [ bgColor, setBgColor ] = useState({backgroundColor: 'white'});
     const [ questions, setQuestions ] = useState(0);
+    const [ isClicked, setIsClicked ] = useState(false);
 
     const apiUrl = "https://restcountries.eu/rest/v2/all";
 
     async function fetchCountries() {
-        const res = await fetch(apiUrl);
-        const data = await res.json();
-        setRandomCountry(data);
+        try {
+            const res = await fetch(apiUrl);
+            const data = await res.json();
+
+            setCountries(data);
+            setRandomCountry(data);
+        } catch (error) {
+            console.error(error);
+        }
     }
     
     useEffect(() => {
-        fetchCountries(randomCountry);
-    }, [questions]);
+        fetchCountries();
+    }, []);
 
     function getRandomCountries() {
         const random = randomCountry[Math.floor(Math.random() *randomCountry.length)];
@@ -40,38 +48,40 @@ function App() {
 
         setRandomCountry(random);
         setRandomOptions(randomOptions);
-        setUserWin('');
-        setDisableFieldset(false);
     }
 
     function checkCorrectAnswer(e) {
-        setDisableFieldset(true);
+        e.preventDefault();
+        setQuestions(questions + 1);
 
         const winCountry = randomCountry.name;
         const userGuess = e.target.value;
         if (winCountry === userGuess) {
-            setUserWin('Win');
+            setUserWin('');
             setGoodGuess(goodGuess + 1);
             setBgColor({backgroundColor: '#81c784'});
+            setIsClicked(false);
+            setCountries(countries);
+            setDisableFieldset(true);
         } else {
             setUserWin('Lose');
             setBgColor({backgroundColor: '#FF8A65'});
+            setIsClicked(true);
         }
-
-        setTimeout(()=>{
-            getRandomCountries();
-            setUserWin('');
-            setDisableFieldset(false);
-            setBgColor({backgroundColor: 'white'});
-        }, 500)
-
     }
 
-    function handleClick(e) {
-        if (goodGuess) {
-            setBgColor({backgroundColor: '#81c784'});
+    function handleClick() {
+        setBgColor({backgroundColor: 'white'});
+    }
+
+    const handleNext = () => {
+        const winCountry = randomCountry.name;
+        const userGuess = e.target.value;
+
+        if (winCountry === userGuess) {
+            setIsClicked(false);
         } else {
-            setBgColor({backgroundColor: '#FF8A65'});
+            setIsClicked(true);
         }
     }
 
@@ -83,6 +93,7 @@ function App() {
                         <Result 
                             goodGuess={goodGuess}
                             getRandomCountries={getRandomCountries}
+                            handleClick={handleClick}
                         />
                     </Route>
                     <Route path="/">
@@ -96,7 +107,7 @@ function App() {
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
                             userIsWin={userIsWin}
-                            handleClick={handleClick}
+                            handleNext={handleNext}
                         />
                     </Route>
                 </Switch>

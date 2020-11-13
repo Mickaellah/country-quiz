@@ -33880,34 +33880,36 @@ function Country({
   bgColor,
   getRandomCountries,
   goodGuess,
-  handleClick
+  handleNext
 }) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "main"
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "random",
+    type: "button",
+    onClick: e => getRandomCountries(e)
+  }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     className: "image",
     src: _undraw_adventure_4hum.default,
     alt: _undraw_adventure_4hum.default
   })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, questions % 2 === 0 ? /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    className: "flag",
     src: randomCountry.flag,
     alt: "Country flag"
   }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("fieldset", {
     disabled: disableFieldset
-  }, /*#__PURE__*/_react.default.createElement("form", {
-    onClick: checkCorrectAnswer
-  }, randomOptions.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
-    key: randomOption.population,
+  }, /*#__PURE__*/_react.default.createElement("form", null, randomOptions.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
     style: bgColor,
+    key: randomOption.population,
+    onClick: e => checkCorrectAnswer(e),
     className: "buttons",
     value: randomOption.name,
-    onClick: handleClick
-  }, randomOption.name)))), /*#__PURE__*/_react.default.createElement("div", null, goodGuess ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, /*#__PURE__*/_react.default.createElement("button", {
+    id: randomOption.name
+  }, randomOption.name)))), /*#__PURE__*/_react.default.createElement("div", null, goodGuess ? /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    onClick: getRandomCountries,
+    onClick: checkCorrectAnswer(),
     className: "next"
-  }, "Next")) : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/result"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
@@ -33915,7 +33917,102 @@ function Country({
   }, "Next")))));
 }
 
-var _default = Country;
+var _default = Country; // import React, { useEffect, useState } from 'react'
+// import { Link } from 'react-router-dom'
+// function QuizData() {
+//     const [countries, setCountries] = useState([])
+//     const [randomCountry, setRandomCountry] = useState({})
+//     const [questionNum, setQuestionNum] = useState(0);
+//     const [randomOptions, setRandomOptions] = useState([])
+//     const [isUserWin, setIsUserWin] = useState('')
+//     const [bgColor, setBgColor] = useState('white')
+//     const [score, setScore] = useState(0)
+//     const [isClicked, setIsClicked] = useState(false)
+//     const getData = async () => {
+//         const apiUrl = "https://restcountries.eu/rest/v2/all";
+//         try {
+//             const res = await fetch(apiUrl);
+//             const data = await res.json();
+//             setCountries(data);
+//             getRandomCountry(data)
+//         } catch (e) {
+//             console.error(e);
+//         }
+//     }
+//     useEffect(() => {
+//         getData()
+//     }, [questionNum])
+//     function getRandomCountry(randomCountry) {
+//         const random = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+//         console.log(random);
+//         const randomOpt1 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+//         const randomOpt2 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+//         const randomOpt3 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+//         const randomOption = [random, randomOpt1, randomOpt2, randomOpt3];
+//         randomOption.sort(() => { return 0.5 - Math.random() });
+//         setRandomCountry(random)
+//         setRandomOptions(randomOption)
+//     }
+//     function handleClick(e) {
+//         e.preventDefault()
+//         if (e.target.value === randomCountry.name) {
+//             console.log(e.target);
+//             setIsUserWin({
+//                 score: score + 1,
+//                 isUserWin: true,
+//                 bgColor: { backgroundColor: '#81C784' }
+//             })
+//             setIsClicked(true)
+//         } else {
+//             setIsUserWin({
+//                 isUserWin: 'Lose',
+//                 bgColor: { backgroundColor: '#FF8A65' }
+//             })
+//             setIsClicked(true)
+//         }
+//     }
+//     const handleNext = () => {
+//         if (!isClicked) {
+//             setIsClicked(false);
+//             setQuestionNum(questionNum + 1);
+//             setScore(score + 1)
+//         } else {
+//             setScore(0)
+//         }
+//     }
+//     return (
+//         <div className="Quiz-card" >
+//             <div className="question-component">
+//                 {questionNum % 2 === 0 ?
+//                     (
+//                         <div className="question-text">
+//                             <img
+//                                 className='flag'
+//                                 src={randomCountry.flag}
+//                                 alt="flag"
+//                             />
+//                             <h3 className="question">Which country does this flag belong to?</h3>
+//                         </div>
+//                     ) : (
+//                         <h3 className="question">
+//                             {randomCountry.capital} is the capital of
+//                         </h3>
+//                     )}
+//             </div>
+//             <form>
+//                 {randomOptions.map(option =>
+//                     <div key={option.numericCode} className='answer-content'>
+//                         <button onClick={handleClick} className="options" value={option.name}>{option.name}</button>
+//                     </div>
+//                 )}
+//                 < button onClick={handleNext} className='next-button'>
+//                     <Link to="/component/QuizResult">Next</Link></button >
+//             </form>
+//         </div >
+//     )
+// }
+// export default QuizData
+
 exports.default = _default;
 },{"react":"node_modules/react/index.js","../img/undraw_adventure_4hum 1.svg":"img/undraw_adventure_4hum 1.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"img/undraw_winners_ao2o 2.svg":[function(require,module,exports) {
 module.exports = "/undraw_winners_ao2o 2.c0e610b1.svg";
@@ -33937,7 +34034,11 @@ var _reactRouterDom = require("react-router-dom");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Result(props) {
+function Result({
+  goodGuess,
+  getRandomCountries,
+  handleClick
+}) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
@@ -33952,13 +34053,13 @@ function Result(props) {
     className: "heading"
   }, "Results"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", {
     className: "score"
-  }, "You got ", /*#__PURE__*/_react.default.createElement("span", {
+  }, "You got", /*#__PURE__*/_react.default.createElement("span", {
     className: "good_guess"
-  }, props.goodGuess), " correct answers.")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, goodGuess), "correct answers.")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    onClick: props.getRandomCountries,
+    onClick: e => handleClick(e),
     className: "try_again"
   }, "Try again"))));
 }
@@ -33988,26 +34089,33 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function App() {
+  const [countries, setCountries] = (0, _react.useState)([]);
   const [randomCountry, setRandomCountry] = (0, _react.useState)({});
   const [randomOptions, setRandomOptions] = (0, _react.useState)([]);
-  const [userIsWin, setUserWin] = (0, _react.useState)('');
+  const [userIsWin, setUserWin] = (0, _react.useState)(false);
   const [disableFieldset, setDisableFieldset] = (0, _react.useState)(false);
   const [goodGuess, setGoodGuess] = (0, _react.useState)(0);
   const [bgColor, setBgColor] = (0, _react.useState)({
     backgroundColor: 'white'
   });
   const [questions, setQuestions] = (0, _react.useState)(0);
+  const [isClicked, setIsClicked] = (0, _react.useState)(false);
   const apiUrl = "https://restcountries.eu/rest/v2/all";
 
   async function fetchCountries() {
-    const res = await fetch(apiUrl);
-    const data = await res.json();
-    setRandomCountry(data);
+    try {
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      setCountries(data);
+      setRandomCountry(data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   (0, _react.useEffect)(() => {
-    fetchCountries(randomCountry);
-  }, [questions]);
+    fetchCountries();
+  }, []);
 
   function getRandomCountries() {
     const random = randomCountry[Math.floor(Math.random() * randomCountry.length)];
@@ -34021,55 +34129,55 @@ function App() {
     console.log(randomOptions);
     setRandomCountry(random);
     setRandomOptions(randomOptions);
-    setUserWin('');
-    setDisableFieldset(false);
   }
 
   function checkCorrectAnswer(e) {
-    setDisableFieldset(true);
+    e.preventDefault();
+    setQuestions(questions + 1);
     const winCountry = randomCountry.name;
     const userGuess = e.target.value;
 
     if (winCountry === userGuess) {
-      setUserWin('Win');
+      setUserWin('');
       setGoodGuess(goodGuess + 1);
       setBgColor({
         backgroundColor: '#81c784'
       });
+      setIsClicked(false);
+      setCountries(countries);
+      setDisableFieldset(true);
     } else {
       setUserWin('Lose');
       setBgColor({
         backgroundColor: '#FF8A65'
       });
+      setIsClicked(true);
     }
-
-    setTimeout(() => {
-      getRandomCountries();
-      setUserWin('');
-      setDisableFieldset(false);
-      setBgColor({
-        backgroundColor: 'white'
-      });
-    }, 500);
   }
 
-  function handleClick(e) {
-    if (goodGuess) {
-      setBgColor({
-        backgroundColor: '#81c784'
-      });
+  function handleClick() {
+    setBgColor({
+      backgroundColor: 'white'
+    });
+  }
+
+  const handleNext = () => {
+    const winCountry = randomCountry.name;
+    const userGuess = e.target.value;
+
+    if (winCountry === userGuess) {
+      setIsClicked(false);
     } else {
-      setBgColor({
-        backgroundColor: '#FF8A65'
-      });
+      setIsClicked(true);
     }
-  }
+  };
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/result"
   }, /*#__PURE__*/_react.default.createElement(_Result.default, {
     goodGuess: goodGuess,
-    getRandomCountries: getRandomCountries
+    getRandomCountries: getRandomCountries,
+    handleClick: handleClick
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_GetRandomCountry.default, {
@@ -34082,7 +34190,7 @@ function App() {
     randomOptions: randomOptions,
     randomCountry: randomCountry,
     userIsWin: userIsWin,
-    handleClick: handleClick
+    handleNext: handleNext
   })))));
 }
 
