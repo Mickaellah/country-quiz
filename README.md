@@ -63,7 +63,8 @@ Template for your readme :
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+![screenshot](./country-quiz.png)
+![screenshot](./result-page.png)
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
@@ -75,7 +76,6 @@ I faced lots of difficulties and I could not solve some of them. Before, I got a
 -   What have you learned/improved?
 
 I learn how to change class component into a functional component. I knew that before but this project strengthen it.
-
 -   Your wisdom? :)
 
 ### Built With
