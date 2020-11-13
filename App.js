@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useEffect, useState } from 'react';
 import Country from './Components/GetRandomCountry';
 import Result from './Components/Result';
 
@@ -8,119 +8,101 @@ import {
 	Route
 } from 'react-router-dom';
 
+function App() {
+    const [ randomCountry, setRandomCountry ] = useState({});
+    const [ randomOptions, setRandomOptions ] = useState([]);
+    const [ userIsWin, setUserWin ] = useState('');
+    const [ disableFieldset, setDisableFieldset ] = useState(false);
+    const [ goodGuess, setGoodGuess ] = useState(0);
+    const [ bgColor, setBgColor ] = useState({backgroundColor: 'white'});
+    const [ questions, setQuestions ] = useState(0);
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            countries: [],
-            randomCountry: {},
-            randomOptions: [],
-            userIsWin: '',
-            disableFieldset: false,
-            isThereCorrectAnswer: false,
-            goodGuess: 0,
-            bgColor: {backgroundColor: 'white'},
-            question: [
-                'Which country does this flag belong to ?',
-                ` is the capital of ?`
-            ]
-        }
-        this.getRandomCountries = this.getRandomCountries.bind(this);
-        this.checkCorrectAnswer = this.checkCorrectAnswer.bind(this);
+    const apiUrl = "https://restcountries.eu/rest/v2/all";
+
+    async function fetchCountries() {
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        setRandomCountry(data);
     }
+    
+    useEffect(() => {
+        fetchCountries(randomCountry);
+    }, [questions]);
 
-    componentDidMount() {
-        const apiUrl = "https://restcountries.eu/rest/v2/all";
-        fetch(apiUrl)
-        .then(data => data.json())
-        .then(countries => this.setState({countries}))
-        .then(this.getRandomCountries)
-    }
-
-    getRandomCountries() {
-        const random = this.state.countries[Math.floor(Math.random() *this.state.countries.length)];
-        const randomOpt1 = this.state.countries[Math.floor(Math.random()* this.state.countries.length)];
-        const randomOpt2 = this.state.countries[Math.floor(Math.random()* this.state.countries.length)];
-        const randomOpt3 = this.state.countries[Math.floor(Math.random()* this.state.countries.length)];
-        const randomOptions = [random.name, randomOpt1.name, randomOpt2.name, randomOpt3.name];
+    function getRandomCountries() {
+        const random = randomCountry[Math.floor(Math.random() *randomCountry.length)];
+        const randomOpt1 = randomCountry[Math.floor(Math.random()* randomCountry.length)];
+        const randomOpt2 = randomCountry[Math.floor(Math.random()* randomCountry.length)];
+        const randomOpt3 = randomCountry[Math.floor(Math.random()* randomCountry.length)];
+        const randomOptions = [random, randomOpt1, randomOpt2, randomOpt3];
         randomOptions.sort(() => { return 0.5 - Math.random() });
-        randomOptions.sort(() => { return 1 - Math.random()});
+        console.log(randomOptions);
 
-        this.setState({
-            randomCountry: random,
-            randomOptions: randomOptions,
-            userIsWin: '',
-            isThereCorrectAnswer: false,
-            disableFieldset: false,
-            question: [
-                'Which country does this flag belong to ?',
-                `${this.state.randomCountry.capital} is the capital of ?`
-            ]
-        })
+        setRandomCountry(random);
+        setRandomOptions(randomOptions);
+        setUserWin('');
+        setDisableFieldset(false);
     }
 
-    checkCorrectAnswer(e) {
-        this.setState({
-            disableFieldset: true,
-            isThereCorrectAnswer: false
-        })
-        const winCountry = this.state.randomCountry.name;
+    function checkCorrectAnswer(e) {
+        setDisableFieldset(true);
+
+        const winCountry = randomCountry.name;
         const userGuess = e.target.value;
         if (winCountry === userGuess) {
-            this.setState({
-                userIsWin: 'Win',
-                goodGuess: this.state.goodGuess + 1,
-                bgColor: {backgroundColor: '#81C784'}
-            })
+            setUserWin('Win');
+            setGoodGuess(goodGuess + 1);
+            setBgColor({backgroundColor: '#81c784'});
         } else {
-            this.setState({
-                userIsWin: 'Lose',
-                bgColor: {backgroundColor: '#FF8A65'}
-            })
+            setUserWin('Lose');
+            setBgColor({backgroundColor: '#FF8A65'});
         }
 
         setTimeout(()=>{
-            this.setState({
-                userIsWin: '',
-                disableFieldset: false,
-                bgColor: {backgroundColor: 'white'},
-        })
+            getRandomCountries();
+            setUserWin('');
+            setDisableFieldset(false);
+            setBgColor({backgroundColor: 'white'});
         }, 500)
 
     }
 
-    render() {
-        return (
-            <>
-                <Router>
-                    <Switch>
-                        <Route path="/result">
-                            <Result 
-                                goodGuess={this.state.goodGuess}
-                                getRandomCountries={this.getRandomCountries}
-                            />
-                        </Route>
-                        <Route path="/">
-                            <Country 
-                                getRandomCountries={this.getRandomCountries}
-                                checkCorrectAnswer={this.checkCorrectAnswer}
-                                countries={this.state.countries}
-                                question={this.state.question}
-                                bgColor={this.state.bgColor}
-                                goodGuess={this.state.goodGuess}
-                                disableFieldset={this.state.disableFieldset}
-                                randomOptions={this.state.randomOptions}
-                                randomCountry={this.state.randomCountry}
-                                isThereCorrectAnswer={this.state.isThereCorrectAnswer}
-                                handleClick={this.handleClick}
-                            />
-                        </Route>
-                    </Switch>
-                </Router>
-            </>
-        )
+    function handleClick(e) {
+        if (goodGuess) {
+            setBgColor({backgroundColor: '#81c784'});
+        } else {
+            setBgColor({backgroundColor: '#FF8A65'});
+        }
     }
+
+    return (
+        <>
+            <Router>
+                <Switch>
+                    <Route path="/result">
+                        <Result 
+                            goodGuess={goodGuess}
+                            getRandomCountries={getRandomCountries}
+                        />
+                    </Route>
+                    <Route path="/">
+                        <Country 
+                            getRandomCountries={getRandomCountries}
+                            checkCorrectAnswer={checkCorrectAnswer}
+                            questions={questions}
+                            bgColor={bgColor}
+                            goodGuess={goodGuess}
+                            disableFieldset={disableFieldset}
+                            randomOptions={randomOptions}
+                            randomCountry={randomCountry}
+                            userIsWin={userIsWin}
+                            handleClick={handleClick}
+                        />
+                    </Route>
+                </Switch>
+            </Router>
+        </>
+    )
 }
 
 export default App
