@@ -69,7 +69,13 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 -   Where can I see your demo?
 -   What was your experience?
+
+I faced lots of difficulties and I could not solve some of them. Before, I got all the buttons for choices working wether it is the right answer or the wrong one. When I click the button that is the right answer, it just throw an error and does not work at all.
+
 -   What have you learned/improved?
+
+I learn how to change class component into a functional component. I knew that before but this project strengthen it.
+
 -   Your wisdom? :)
 
 ### Built With
@@ -81,6 +87,10 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 ## Features
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
+
+-   This project contains three js files, one of them is the parent component which is the App.js which contains all the functions and states, the other two are children.
+
+-   The GetRandomCountry.js file contains all the choices and the questions with two buttons, next and random. Random button is used to show all the choices at the first time, the next button is used to switch page when you get the anser wrong and it leads to the result page, where you can find the score you have got and a try again button for trying the quiz again.
 
 ## How To Use
 
@@ -106,5 +116,5 @@ $ npm start
 ## Contact
 
 -   Website [your-website.com](https://{your-web-site-link})
--   GitHub [@your-username](https://{github.com/your-usermame})
+-   GitHub [@Mickaella](https://github.com/Mickaellah/country-quiz)
 -   Twitter [@your-twitter](https://{twitter.com/your-username})
