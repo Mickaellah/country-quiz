@@ -25,7 +25,7 @@ function Result({ goodGuess, getRandomCountries, handleClick }) {
                 <Link to='/'>
                     <button 
                         type="button" 
-                        onClick={e => handleClick(e)} 
+                        onClick={getRandomCountries} 
                         className="try_again"
                     >Try again</button>
                 </Link>

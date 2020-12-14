@@ -33875,18 +33875,10 @@ function Country({
   randomCountry,
   randomOptions,
   questions,
-  disableFieldset,
   checkCorrectAnswer,
-  bgColor,
-  getRandomCountries,
-  goodGuess,
-  handleNext
+  bgColor
 }) {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
-    className: "random",
-    type: "button",
-    onClick: e => getRandomCountries(e)
-  }, "Random"), /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "main"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     className: "image",
@@ -33894,22 +33886,16 @@ function Country({
     alt: _undraw_adventure_4hum.default
   })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, questions % 2 === 0 ? /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     className: "flag",
-    src: randomCountry.flag,
+    src: randomCountry?.flag,
     alt: "Country flag"
-  }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("fieldset", {
-    disabled: disableFieldset
-  }, /*#__PURE__*/_react.default.createElement("form", null, randomOptions.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("form", null, randomOptions.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
     style: bgColor,
-    key: randomOption.population,
+    key: randomOption?.name,
     onClick: e => checkCorrectAnswer(e),
     className: "buttons",
-    value: randomOption.name,
-    id: randomOption.name
-  }, randomOption.name)))), /*#__PURE__*/_react.default.createElement("div", null, goodGuess ? /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: getRandomCountries,
-    className: "next"
-  }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    value: randomOption?.name,
+    id: randomOption?.name
+  }, randomOption?.name)))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/result"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
@@ -33964,7 +33950,7 @@ function Result({
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    onClick: e => handleClick(e),
+    onClick: getRandomCountries,
     className: "try_again"
   }, "Try again"))));
 }
@@ -33996,9 +33982,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function App() {
   const [countries, setCountries] = (0, _react.useState)([]);
   const [randomCountry, setRandomCountry] = (0, _react.useState)({});
-  const [randomOptions, setRandomOptions] = (0, _react.useState)([]);
-  const [userIsWin, setUserWin] = (0, _react.useState)(false);
-  const [disableFieldset, setDisableFieldset] = (0, _react.useState)(false);
+  const [randomOptions, setRandomOptions] = (0, _react.useState)([]); // const [ disableFieldset, setDisableFieldset ] = useState(false);
+
   const [goodGuess, setGoodGuess] = (0, _react.useState)(0);
   const [bgColor, setBgColor] = (0, _react.useState)({
     backgroundColor: 'white'
@@ -34023,26 +34008,28 @@ function App() {
   }, []);
 
   function getRandomCountries() {
-    const random = randomCountry[Math.floor(Math.random() * randomCountry.length)];
-    const randomOpt1 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
-    const randomOpt2 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
-    const randomOpt3 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+    const random = countries[Math.floor(Math.random() * countries.length)];
+    const randomOpt1 = countries[Math.floor(Math.random() * countries.length)];
+    const randomOpt2 = countries[Math.floor(Math.random() * countries.length)];
+    const randomOpt3 = countries[Math.floor(Math.random() * countries.length)];
     const randomOptions = [random, randomOpt1, randomOpt2, randomOpt3];
-    randomOptions.sort(() => {
-      return 0.5 - Math.random();
-    });
-    setRandomCountry(random);
     setRandomOptions(randomOptions);
+    setRandomCountry(random);
+    setBgColor({
+      backgroundColor: 'white'
+    });
   }
+
+  (0, _react.useEffect)(() => {
+    getRandomCountries();
+  }, [countries]);
 
   function checkCorrectAnswer(e) {
     e.preventDefault();
-    setQuestions(questions + 1);
     const winCountry = randomCountry.name;
     const userGuess = e.target.value;
 
-    if (winCountry == userGuess) {
-      setUserWin('');
+    if (winCountry === userGuess) {
       setGoodGuess(goodGuess + 1);
       setBgColor({
         backgroundColor: '#81c784'
@@ -34050,13 +34037,15 @@ function App() {
       setIsClicked(false);
       setCountries(countries);
     } else {
-      setUserWin('Lose');
       setBgColor({
         backgroundColor: '#FF8A65'
       });
       setIsClicked(true);
-      setDisableFieldset(true);
     }
+
+    setTimeout(() => {
+      setQuestions(questions + 1);
+    }, 2000);
   }
 
   function handleClick() {
@@ -34089,11 +34078,10 @@ function App() {
     checkCorrectAnswer: checkCorrectAnswer,
     questions: questions,
     bgColor: bgColor,
-    goodGuess: goodGuess,
-    disableFieldset: disableFieldset,
+    goodGuess: goodGuess // disableFieldset={disableFieldset}
+    ,
     randomOptions: randomOptions,
     randomCountry: randomCountry,
-    userIsWin: userIsWin,
     handleNext: handleNext
   })))));
 }
@@ -34140,7 +34128,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51937" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57419" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

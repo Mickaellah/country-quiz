@@ -12,8 +12,7 @@ function App() {
     const [ countries, setCountries ] = useState([]);
     const [ randomCountry, setRandomCountry ] = useState({});
     const [ randomOptions, setRandomOptions ] = useState([]);
-    const [ userIsWin, setUserWin ] = useState(false);
-    const [ disableFieldset, setDisableFieldset ] = useState(false);
+    // const [ disableFieldset, setDisableFieldset ] = useState(false);
     const [ goodGuess, setGoodGuess ] = useState(0);
     const [ bgColor, setBgColor ] = useState({backgroundColor: 'white'});
     const [ questions, setQuestions ] = useState(0);
@@ -38,35 +37,39 @@ function App() {
     }, []);
 
     function getRandomCountries() {
-        const random = randomCountry[Math.floor(Math.random() *randomCountry.length)];
-        const randomOpt1 = randomCountry[Math.floor(Math.random()* randomCountry.length)];
-        const randomOpt2 = randomCountry[Math.floor(Math.random()* randomCountry.length)];
-        const randomOpt3 = randomCountry[Math.floor(Math.random()* randomCountry.length)];
+        const random = countries[Math.floor(Math.random() * countries.length)];
+        const randomOpt1 = countries[Math.floor(Math.random()* countries.length)];
+        const randomOpt2 = countries[Math.floor(Math.random()* countries.length)];
+        const randomOpt3 = countries[Math.floor(Math.random()* countries.length)];
         const randomOptions = [random, randomOpt1, randomOpt2, randomOpt3];
-        randomOptions.sort(() => { return 0.5 - Math.random() });
 
-        setRandomCountry(random);
         setRandomOptions(randomOptions);
+        setRandomCountry(random);
+        setBgColor({backgroundColor: 'white'});
     }
+
+    useEffect(() => {
+        getRandomCountries();
+    }, [countries]);
 
     function checkCorrectAnswer(e) {
         e.preventDefault();
-        setQuestions(questions + 1);
 
         const winCountry = randomCountry.name;
         const userGuess = e.target.value;
-        if (winCountry == userGuess) {
-            setUserWin('');
+        if (winCountry === userGuess) {
             setGoodGuess(goodGuess + 1);
             setBgColor({backgroundColor: '#81c784'});
             setIsClicked(false);
             setCountries(countries);
         } else {
-            setUserWin('Lose');
             setBgColor({backgroundColor: '#FF8A65'});
             setIsClicked(true);
-            setDisableFieldset(true);
         }
+
+        setTimeout(() => {
+            setQuestions(questions + 1);
+        }, 2000);
     }
 
     function handleClick() {
@@ -102,10 +105,9 @@ function App() {
                             questions={questions}
                             bgColor={bgColor}
                             goodGuess={goodGuess}
-                            disableFieldset={disableFieldset}
+                            // disableFieldset={disableFieldset}
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
-                            userIsWin={userIsWin}
                             handleNext={handleNext}
                         />
                     </Route>

@@ -2,10 +2,9 @@ import React from 'react';
 import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
-function Country({randomCountry, randomOptions,questions, disableFieldset, checkCorrectAnswer, bgColor, getRandomCountries, goodGuess, handleNext}) {
+function Country({randomCountry, randomOptions,questions, checkCorrectAnswer, bgColor}) {
     return (
         <>
-        <button className="random" type='button' onClick={e => getRandomCountries(e)}>Random</button>
             <div className="main">
                 <div>
                     <img className="image" src={Image} alt={Image} />
@@ -18,34 +17,34 @@ function Country({randomCountry, randomOptions,questions, disableFieldset, check
                                 <div>
                                     <img 
                                         className='flag'
-                                        src={randomCountry.flag} 
+                                        src={randomCountry?.flag} 
                                         alt="Country flag"
                                      />
                                     <h3>Which country does this flag belong to?</h3>
                                 </div> 
                                 : 
-                                <h3>{randomCountry.capital} is the capital of?</h3>
+                                <h3>{randomCountry?.capital} is the capital of?</h3>
                         }
                     </div>
                 </div>
-                <fieldset disabled={disableFieldset}>
+                <fieldset>
                     <form>
                         {randomOptions.map((randomOption) => 
                             <button 
                                 style={bgColor}
-                                key={randomOption.population}
+                                key={randomOption?.name}
                                 onClick={e => checkCorrectAnswer(e)}
                                 className="buttons" 
-                                value={randomOption.name}
-                                id={randomOption.name}
+                                value={randomOption?.name}
+                                id={randomOption?.name}
                             >
-                                {randomOption.name}
+                                {randomOption?.name}
                             </button>
                         )}
                     </form>
                 </fieldset>
                 <div>
-                    {goodGuess 
+                    {/* {goodGuess 
                         ? 
                         <button 
                             type="button" 
@@ -53,7 +52,7 @@ function Country({randomCountry, randomOptions,questions, disableFieldset, check
                             className="next">
                             Next
                         </button>
-                        :
+                        : */}
                         <Link to="/result">
                             <button 
                                 type="button"
@@ -61,7 +60,7 @@ function Country({randomCountry, randomOptions,questions, disableFieldset, check
                                 Next
                             </button>
                         </Link>
-                        }
+                        {/* } */}
                 </div> 
             </div>
         </>
