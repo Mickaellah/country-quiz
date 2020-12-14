@@ -33933,8 +33933,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Result({
   goodGuess,
-  getRandomCountries,
-  handleClick
+  getRandomCountries
 }) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
@@ -34083,7 +34082,6 @@ function App() {
     checkCorrectAnswer: checkCorrectAnswer,
     questions: questions,
     bgColor: bgColor,
-    goodGuess: goodGuess,
     isClicked: isClicked,
     randomOptions: randomOptions,
     randomCountry: randomCountry,

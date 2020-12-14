@@ -103,7 +103,6 @@ function App() {
                             checkCorrectAnswer={checkCorrectAnswer}
                             questions={questions}
                             bgColor={bgColor}
-                            goodGuess={goodGuess}
                             isClicked={isClicked}
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
