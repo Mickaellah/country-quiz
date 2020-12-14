@@ -12,7 +12,6 @@ function App() {
     const [ countries, setCountries ] = useState([]);
     const [ randomCountry, setRandomCountry ] = useState({});
     const [ randomOptions, setRandomOptions ] = useState([]);
-    // const [ disableFieldset, setDisableFieldset ] = useState(false);
     const [ goodGuess, setGoodGuess ] = useState(0);
     const [ bgColor, setBgColor ] = useState({backgroundColor: 'white'});
     const [ questions, setQuestions ] = useState(0);
@@ -60,11 +59,11 @@ function App() {
         if (winCountry === userGuess) {
             setGoodGuess(goodGuess + 1);
             setBgColor({backgroundColor: '#81c784'});
-            setIsClicked(false);
+            setIsClicked(true);
             setCountries(countries);
         } else {
             setBgColor({backgroundColor: '#FF8A65'});
-            setIsClicked(true);
+            setIsClicked(false);
         }
 
         setTimeout(() => {
@@ -105,7 +104,7 @@ function App() {
                             questions={questions}
                             bgColor={bgColor}
                             goodGuess={goodGuess}
-                            // disableFieldset={disableFieldset}
+                            isClicked={isClicked}
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
                             handleNext={handleNext}

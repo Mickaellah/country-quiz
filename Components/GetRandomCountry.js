@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
-function Country({randomCountry, randomOptions,questions, checkCorrectAnswer, bgColor}) {
+function Country({randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, bgColor, isClicked}) {
     return (
         <>
             <div className="main">
@@ -27,24 +27,22 @@ function Country({randomCountry, randomOptions,questions, checkCorrectAnswer, bg
                         }
                     </div>
                 </div>
-                <fieldset>
-                    <form>
-                        {randomOptions.map((randomOption) => 
-                            <button 
-                                style={bgColor}
-                                key={randomOption?.name}
-                                onClick={e => checkCorrectAnswer(e)}
-                                className="buttons" 
-                                value={randomOption?.name}
-                                id={randomOption?.name}
-                            >
-                                {randomOption?.name}
-                            </button>
-                        )}
-                    </form>
-                </fieldset>
+                <form>
+                    {randomOptions.map((randomOption) => 
+                        <button 
+                            style={bgColor}
+                            key={randomOption?.name}
+                            onClick={e => checkCorrectAnswer(e)}
+                            className="buttons" 
+                            value={randomOption?.name}
+                            id={randomOption?.name}
+                        >
+                            {randomOption?.name}
+                        </button>
+                    )}
+                </form>
                 <div>
-                    {/* {goodGuess 
+                    {isClicked 
                         ? 
                         <button 
                             type="button" 
@@ -52,7 +50,7 @@ function Country({randomCountry, randomOptions,questions, checkCorrectAnswer, bg
                             className="next">
                             Next
                         </button>
-                        : */}
+                        :
                         <Link to="/result">
                             <button 
                                 type="button"
@@ -60,7 +58,7 @@ function Country({randomCountry, randomOptions,questions, checkCorrectAnswer, bg
                                 Next
                             </button>
                         </Link>
-                        {/* } */}
+                    }
                 </div> 
             </div>
         </>

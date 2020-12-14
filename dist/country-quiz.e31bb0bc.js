@@ -33875,8 +33875,10 @@ function Country({
   randomCountry,
   randomOptions,
   questions,
+  getRandomCountries,
   checkCorrectAnswer,
-  bgColor
+  bgColor,
+  isClicked
 }) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "main"
@@ -33888,14 +33890,18 @@ function Country({
     className: "flag",
     src: randomCountry?.flag,
     alt: "Country flag"
-  }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("form", null, randomOptions.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("form", null, randomOptions.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
     style: bgColor,
     key: randomOption?.name,
     onClick: e => checkCorrectAnswer(e),
     className: "buttons",
     value: randomOption?.name,
     id: randomOption?.name
-  }, randomOption?.name)))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, randomOption?.name))), /*#__PURE__*/_react.default.createElement("div", null, isClicked ? /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: getRandomCountries,
+    className: "next"
+  }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/result"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
@@ -33982,8 +33988,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function App() {
   const [countries, setCountries] = (0, _react.useState)([]);
   const [randomCountry, setRandomCountry] = (0, _react.useState)({});
-  const [randomOptions, setRandomOptions] = (0, _react.useState)([]); // const [ disableFieldset, setDisableFieldset ] = useState(false);
-
+  const [randomOptions, setRandomOptions] = (0, _react.useState)([]);
   const [goodGuess, setGoodGuess] = (0, _react.useState)(0);
   const [bgColor, setBgColor] = (0, _react.useState)({
     backgroundColor: 'white'
@@ -34034,13 +34039,13 @@ function App() {
       setBgColor({
         backgroundColor: '#81c784'
       });
-      setIsClicked(false);
+      setIsClicked(true);
       setCountries(countries);
     } else {
       setBgColor({
         backgroundColor: '#FF8A65'
       });
-      setIsClicked(true);
+      setIsClicked(false);
     }
 
     setTimeout(() => {
@@ -34078,8 +34083,8 @@ function App() {
     checkCorrectAnswer: checkCorrectAnswer,
     questions: questions,
     bgColor: bgColor,
-    goodGuess: goodGuess // disableFieldset={disableFieldset}
-    ,
+    goodGuess: goodGuess,
+    isClicked: isClicked,
     randomOptions: randomOptions,
     randomCountry: randomCountry,
     handleNext: handleNext
