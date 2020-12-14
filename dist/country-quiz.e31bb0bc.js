@@ -33882,13 +33882,13 @@ function Country({
   goodGuess,
   handleNext
 }) {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "main"
-  }, /*#__PURE__*/_react.default.createElement("button", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
     className: "random",
     type: "button",
     onClick: e => getRandomCountries(e)
-  }, "Random"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+  }, "Random"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "main"
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     className: "image",
     src: _undraw_adventure_4hum.default,
     alt: _undraw_adventure_4hum.default
@@ -33907,7 +33907,7 @@ function Country({
     id: randomOption.name
   }, randomOption.name)))), /*#__PURE__*/_react.default.createElement("div", null, goodGuess ? /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    onClick: checkCorrectAnswer(),
+    onClick: getRandomCountries,
     className: "next"
   }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/result"
@@ -34031,7 +34031,6 @@ function App() {
     randomOptions.sort(() => {
       return 0.5 - Math.random();
     });
-    console.log(randomOptions);
     setRandomCountry(random);
     setRandomOptions(randomOptions);
   }
@@ -34042,7 +34041,7 @@ function App() {
     const winCountry = randomCountry.name;
     const userGuess = e.target.value;
 
-    if (winCountry === userGuess) {
+    if (winCountry == userGuess) {
       setUserWin('');
       setGoodGuess(goodGuess + 1);
       setBgColor({
@@ -34050,13 +34049,13 @@ function App() {
       });
       setIsClicked(false);
       setCountries(countries);
-      setDisableFieldset(true);
     } else {
       setUserWin('Lose');
       setBgColor({
         backgroundColor: '#FF8A65'
       });
       setIsClicked(true);
+      setDisableFieldset(true);
     }
   }
 
@@ -34141,7 +34140,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58762" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51937" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

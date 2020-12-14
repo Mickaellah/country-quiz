@@ -44,7 +44,6 @@ function App() {
         const randomOpt3 = randomCountry[Math.floor(Math.random()* randomCountry.length)];
         const randomOptions = [random, randomOpt1, randomOpt2, randomOpt3];
         randomOptions.sort(() => { return 0.5 - Math.random() });
-        console.log(randomOptions);
 
         setRandomCountry(random);
         setRandomOptions(randomOptions);
@@ -56,17 +55,17 @@ function App() {
 
         const winCountry = randomCountry.name;
         const userGuess = e.target.value;
-        if (winCountry === userGuess) {
+        if (winCountry == userGuess) {
             setUserWin('');
             setGoodGuess(goodGuess + 1);
             setBgColor({backgroundColor: '#81c784'});
             setIsClicked(false);
             setCountries(countries);
-            setDisableFieldset(true);
         } else {
             setUserWin('Lose');
             setBgColor({backgroundColor: '#FF8A65'});
             setIsClicked(true);
+            setDisableFieldset(true);
         }
     }
 

@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom';
 function Country({randomCountry, randomOptions,questions, disableFieldset, checkCorrectAnswer, bgColor, getRandomCountries, goodGuess, handleNext}) {
     return (
         <>
+        <button className="random" type='button' onClick={e => getRandomCountries(e)}>Random</button>
             <div className="main">
-                <button className="random" type='button' onClick={e => getRandomCountries(e)}>Random</button>
                 <div>
                     <img className="image" src={Image} alt={Image} />
                 </div>
@@ -49,7 +49,7 @@ function Country({randomCountry, randomOptions,questions, disableFieldset, check
                         ? 
                         <button 
                             type="button" 
-                            onClick={checkCorrectAnswer()} 
+                            onClick={getRandomCountries} 
                             className="next">
                             Next
                         </button>
