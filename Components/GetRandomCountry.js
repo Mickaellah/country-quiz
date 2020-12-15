@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
-function Country({randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, bgColor, isClicked}) {
+function Country({randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isClicked}) {
     return (
         <>
             <div className="main">

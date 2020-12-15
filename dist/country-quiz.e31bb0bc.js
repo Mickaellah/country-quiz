@@ -33877,7 +33877,6 @@ function Country({
   questions,
   getRandomCountries,
   checkCorrectAnswer,
-  bgColor,
   isClicked
 }) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
@@ -34044,32 +34043,14 @@ function App() {
 
     setTimeout(() => {
       setQuestions(questions + 1);
-    }, 3000);
+    }, 5000);
   }
-
-  function handleClick() {
-    setBgColor({
-      backgroundColor: 'white'
-    });
-  }
-
-  const handleNext = () => {
-    const winCountry = randomCountry.name;
-    const userGuess = e.target.value;
-
-    if (winCountry === userGuess) {
-      setIsClicked(false);
-    } else {
-      setIsClicked(true);
-    }
-  };
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/result"
   }, /*#__PURE__*/_react.default.createElement(_Result.default, {
     goodGuess: goodGuess,
-    getRandomCountries: getRandomCountries,
-    handleClick: handleClick
+    getRandomCountries: getRandomCountries
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_GetRandomCountry.default, {
@@ -34079,8 +34060,7 @@ function App() {
     bgColor: bgColor,
     isClicked: isClicked,
     randomOptions: randomOptions,
-    randomCountry: randomCountry,
-    handleNext: handleNext
+    randomCountry: randomCountry
   })))));
 }
 

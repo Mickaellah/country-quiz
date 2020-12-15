@@ -68,22 +68,7 @@ function App() {
 
         setTimeout(() => {
             setQuestions(questions + 1);
-        }, 3000);
-    }
-
-    function handleClick() {
-        setBgColor({backgroundColor: 'white'});
-    }
-
-    const handleNext = () => {
-        const winCountry = randomCountry.name;
-        const userGuess = e.target.value;
-
-        if (winCountry === userGuess) {
-            setIsClicked(false);
-        } else {
-            setIsClicked(true);
-        }
+        }, 5000);
     }
 
     return (
@@ -94,7 +79,6 @@ function App() {
                         <Result 
                             goodGuess={goodGuess}
                             getRandomCountries={getRandomCountries}
-                            handleClick={handleClick}
                         />
                     </Route>
                     <Route path="/">
@@ -106,7 +90,6 @@ function App() {
                             isClicked={isClicked}
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
-                            handleNext={handleNext}
                         />
                     </Route>
                 </Switch>

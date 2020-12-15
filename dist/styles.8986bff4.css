@@ -79,10 +79,6 @@ button {
     color: #6066D0;
 }
 
-.buttons::before {
-    background-color: darkorange;
-}
-
 span {
     margin-block-start: 15px;
 }
