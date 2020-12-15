@@ -56,19 +56,19 @@ function App() {
 
         const winCountry = randomCountry.name;
         const userGuess = e.target.value;
+        document.getElementById(winCountry).style.backgroundColor = '#81c784'
         if (winCountry === userGuess) {
             setGoodGuess(goodGuess + 1);
-            setBgColor({backgroundColor: '#81c784'});
             setIsClicked(true);
             setCountries(countries);
         } else {
-            setBgColor({backgroundColor: '#FF8A65'});
+            e.target.classList.add("wrongAnswer")
             setIsClicked(false);
         }
 
         setTimeout(() => {
             setQuestions(questions + 1);
-        }, 2000);
+        }, 3000);
     }
 
     function handleClick() {

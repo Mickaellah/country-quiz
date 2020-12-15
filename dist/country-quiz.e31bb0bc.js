@@ -33891,7 +33891,6 @@ function Country({
     src: randomCountry?.flag,
     alt: "Country flag"
   }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("form", null, randomOptions.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
-    style: bgColor,
     key: randomOption?.name,
     onClick: e => checkCorrectAnswer(e),
     className: "buttons",
@@ -34032,24 +34031,20 @@ function App() {
     e.preventDefault();
     const winCountry = randomCountry.name;
     const userGuess = e.target.value;
+    document.getElementById(winCountry).style.backgroundColor = '#81c784';
 
     if (winCountry === userGuess) {
       setGoodGuess(goodGuess + 1);
-      setBgColor({
-        backgroundColor: '#81c784'
-      });
       setIsClicked(true);
       setCountries(countries);
     } else {
-      setBgColor({
-        backgroundColor: '#FF8A65'
-      });
+      e.target.classList.add("wrongAnswer");
       setIsClicked(false);
     }
 
     setTimeout(() => {
       setQuestions(questions + 1);
-    }, 2000);
+    }, 3000);
   }
 
   function handleClick() {
@@ -34131,7 +34126,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57419" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56767" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

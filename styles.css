@@ -79,6 +79,10 @@ button {
     color: #6066D0;
 }
 
+.buttons::before {
+    background-color: darkorange;
+}
+
 span {
     margin-block-start: 15px;
 }
@@ -140,10 +144,6 @@ span {
     font-size: 16px;
 }
 
-.green {
-    background-color: green;
-}
-
-.red {
-    background-color: red;
+.wrongAnswer {
+    background-color: #FF8A65;
 }

@@ -30,7 +30,6 @@ function Country({randomCountry, randomOptions,questions, getRandomCountries, ch
                 <form>
                     {randomOptions.map((randomOption) => 
                         <button 
-                            style={bgColor}
                             key={randomOption?.name}
                             onClick={e => checkCorrectAnswer(e)}
                             className="buttons" 
