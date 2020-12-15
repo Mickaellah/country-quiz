@@ -33921,8 +33921,6 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _undraw_adventure_4hum = _interopRequireDefault(require("../img/undraw_adventure_4hum 1.svg"));
-
 var _undraw_winners_ao2o = _interopRequireDefault(require("../img/undraw_winners_ao2o 2.svg"));
 
 var _reactRouterDom = require("react-router-dom");
@@ -33936,10 +33934,6 @@ function Result({
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
-    className: "logo",
-    src: _undraw_adventure_4hum.default,
-    alt: "Logo"
-  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     className: "result",
     src: _undraw_winners_ao2o.default,
     alt: "Result"
@@ -33960,7 +33954,7 @@ function Result({
 
 var _default = Result;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../img/undraw_adventure_4hum 1.svg":"img/undraw_adventure_4hum 1.svg","../img/undraw_winners_ao2o 2.svg":"img/undraw_winners_ao2o 2.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../img/undraw_winners_ao2o 2.svg":"img/undraw_winners_ao2o 2.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34106,7 +34100,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56767" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50633" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
