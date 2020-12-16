@@ -1,20 +1,38 @@
+@font-face {
+    font-family: "Poppins bold";
+    src: url('/Poppins-Bold.2749a141.woff2') format("woff2"),
+        url('/Poppins-Bold.862ba13a.woff') format("woff");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Poppins medium";
+    src: url('/Poppins-Medium.c6d50270.woff2') format("woff2"),
+        url('/Poppins-Medium.ada750d9.woff') format("woff");
+    font-weight: 500;
+}
+
 body {
+    font-family: "Poppins medium";
     background-image: url('/background.59c06501.png');
     background-repeat: no-repeat;
     background-position: center;
     max-width: 400px;
     margin-inline-start: auto;
     margin-inline-end: auto;
+    font-size: 18px;
 }
 
 h1 {
     color: white;
     text-transform: uppercase;
+    font-family: "Poppins bold";
+    font-size: 36px;
 }
 
 h3 {
     color: #2F527B;
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
 }
 
