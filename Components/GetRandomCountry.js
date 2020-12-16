@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
-function Country({randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isClicked}) {
+function Country({randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isCorrect, isClicked}) {
     return (
         <>
             <div className="main">
@@ -42,21 +42,24 @@ function Country({randomCountry, randomOptions,questions, getRandomCountries, ch
                 </form>
                 <div>
                     {isClicked 
-                        ? 
-                        <button 
-                            type="button" 
-                            onClick={getRandomCountries} 
-                            className="next">
-                            Next
-                        </button>
-                        :
-                        <Link to="/result">
+                        ? (isCorrect 
+                            ? 
                             <button 
-                                type="button"
+                                type="button" 
+                                onClick={getRandomCountries} 
                                 className="next">
                                 Next
                             </button>
-                        </Link>
+                            :
+                            <Link to="/result">
+                                <button 
+                                    type="button"
+                                    className="next">
+                                    Next
+                                </button>
+                            </Link>
+                        ) 
+                        : ""
                     }
                 </div> 
             </div>

@@ -33877,6 +33877,7 @@ function Country({
   questions,
   getRandomCountries,
   checkCorrectAnswer,
+  isCorrect,
   isClicked
 }) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
@@ -33895,7 +33896,7 @@ function Country({
     className: "buttons",
     value: randomOption?.name,
     id: randomOption?.name
-  }, randomOption?.name))), /*#__PURE__*/_react.default.createElement("div", null, isClicked ? /*#__PURE__*/_react.default.createElement("button", {
+  }, randomOption?.name))), /*#__PURE__*/_react.default.createElement("div", null, isClicked ? isCorrect ? /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     onClick: getRandomCountries,
     className: "next"
@@ -33904,7 +33905,7 @@ function Country({
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     className: "next"
-  }, "Next")))));
+  }, "Next")) : "")));
 }
 
 var _default = Country;
@@ -33985,6 +33986,7 @@ function App() {
     backgroundColor: 'white'
   });
   const [questions, setQuestions] = (0, _react.useState)(0);
+  const [isCorrect, setIsCorrect] = (0, _react.useState)(false);
   const [isClicked, setIsClicked] = (0, _react.useState)(false);
   const apiUrl = "https://restcountries.eu/rest/v2/all";
 
@@ -34025,14 +34027,15 @@ function App() {
     const winCountry = randomCountry.name;
     const userGuess = e.target.value;
     document.getElementById(winCountry).style.backgroundColor = '#81c784';
+    setIsClicked(true);
 
     if (winCountry === userGuess) {
       setGoodGuess(goodGuess + 1);
-      setIsClicked(true);
+      setIsCorrect(true);
       setCountries(countries);
     } else {
       e.target.classList.add("wrongAnswer");
-      setIsClicked(false);
+      setIsCorrect(false);
     }
 
     setTimeout(() => {
@@ -34052,9 +34055,10 @@ function App() {
     checkCorrectAnswer: checkCorrectAnswer,
     questions: questions,
     bgColor: bgColor,
-    isClicked: isClicked,
+    isCorrect: isCorrect,
     randomOptions: randomOptions,
-    randomCountry: randomCountry
+    randomCountry: randomCountry,
+    isClicked: isClicked
   })))));
 }
 
@@ -34100,7 +34104,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60887" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62406" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

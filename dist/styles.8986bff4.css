@@ -77,15 +77,8 @@ button {
     cursor: pointer;
 }
 
-.random {
-    padding-block: 8px;
-    padding-inline: 16px;
-    margin-block-end: 32px;
-    border: none;
-    border-radius: 8px;
-    background-color: orange;
-    color: white;
-    text-transform: uppercase;
+button:hover {
+    background-color: #f9a826;
 }
 
 .buttons {
@@ -103,19 +96,27 @@ span {
     margin-block-start: 15px;
 }
 
+.right_answer {
+    background-image: url('/check_circle_outline-24px.5b26f2d9.svg');
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+}
+
+.wrong_answer {
+    background-image: url('/highlight_off-24px.bab07c15.svg');
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+}
+
 .next {
     padding-block: 12px;
     padding-inline: 24px;
     border-radius: 8px;
     border: none;
-    background-color: orange;
+    background-color: #f9a826;
     color: white;
     margin-block-start: 16px;
     margin-inline-start: 70%;
-}
-
-.next:hover {
-    background-color: orangered;
 }
 
 .container {

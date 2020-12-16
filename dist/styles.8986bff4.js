@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./fonts\\Poppins-Bold.woff2":[["Poppins-Bold.2749a141.woff2","fonts/Poppins-Bold.woff2"],"fonts/Poppins-Bold.woff2"],"./fonts\\Poppins-Bold.woff":[["Poppins-Bold.862ba13a.woff","fonts/Poppins-Bold.woff"],"fonts/Poppins-Bold.woff"],"./fonts\\Poppins-Medium.woff2":[["Poppins-Medium.c6d50270.woff2","fonts/Poppins-Medium.woff2"],"fonts/Poppins-Medium.woff2"],"./fonts\\Poppins-Medium.woff":[["Poppins-Medium.ada750d9.woff","fonts/Poppins-Medium.woff"],"fonts/Poppins-Medium.woff"],"./img\\background.png":[["background.59c06501.png","img/background.png"],"img/background.png"],"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./fonts\\Poppins-Bold.woff2":[["Poppins-Bold.2749a141.woff2","fonts/Poppins-Bold.woff2"],"fonts/Poppins-Bold.woff2"],"./fonts\\Poppins-Bold.woff":[["Poppins-Bold.862ba13a.woff","fonts/Poppins-Bold.woff"],"fonts/Poppins-Bold.woff"],"./fonts\\Poppins-Medium.woff2":[["Poppins-Medium.c6d50270.woff2","fonts/Poppins-Medium.woff2"],"fonts/Poppins-Medium.woff2"],"./fonts\\Poppins-Medium.woff":[["Poppins-Medium.ada750d9.woff","fonts/Poppins-Medium.woff"],"fonts/Poppins-Medium.woff"],"./img\\background.png":[["background.59c06501.png","img/background.png"],"img/background.png"],"./icons\\check_circle_outline-24px.svg":[["check_circle_outline-24px.5b26f2d9.svg","icons/check_circle_outline-24px.svg"],"icons/check_circle_outline-24px.svg"],"./icons\\highlight_off-24px.svg":[["highlight_off-24px.bab07c15.svg","icons/highlight_off-24px.svg"],"icons/highlight_off-24px.svg"],"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60887" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62406" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

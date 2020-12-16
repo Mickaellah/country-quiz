@@ -15,6 +15,7 @@ function App() {
     const [ goodGuess, setGoodGuess ] = useState(0);
     const [ bgColor, setBgColor ] = useState({backgroundColor: 'white'});
     const [ questions, setQuestions ] = useState(0);
+    const [ isCorrect, setIsCorrect ] = useState(false);
     const [ isClicked, setIsClicked ] = useState(false);
 
     const apiUrl = "https://restcountries.eu/rest/v2/all";
@@ -56,14 +57,15 @@ function App() {
 
         const winCountry = randomCountry.name;
         const userGuess = e.target.value;
-        document.getElementById(winCountry).style.backgroundColor = '#81c784'
+        document.getElementById(winCountry).style.backgroundColor = '#81c784';
+        setIsClicked(true);
         if (winCountry === userGuess) {
             setGoodGuess(goodGuess + 1);
-            setIsClicked(true);
+            setIsCorrect(true);
             setCountries(countries);
         } else {
             e.target.classList.add("wrongAnswer")
-            setIsClicked(false);
+            setIsCorrect(false);
         }
 
         setTimeout(() => {
@@ -87,9 +89,10 @@ function App() {
                             checkCorrectAnswer={checkCorrectAnswer}
                             questions={questions}
                             bgColor={bgColor}
-                            isClicked={isClicked}
+                            isCorrect={isCorrect}
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
+                            isClicked={isClicked}
                         />
                     </Route>
                 </Switch>
