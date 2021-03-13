@@ -34027,10 +34027,11 @@ function App() {
     e.preventDefault();
     const winCountry = randomCountry.name;
     const userGuess = e.target.value;
-    document.getElementById(winCountry).style.backgroundColor = '#81c784';
+    document.getElementById(winCountry).style.backgroundColor = '#60BF88';
     setIsClicked(true);
 
     if (winCountry === userGuess) {
+      e.target.classList.add("rightAnswer");
       setGoodGuess(goodGuess + 1);
       setIsCorrect(true);
       setCountries(countries);
