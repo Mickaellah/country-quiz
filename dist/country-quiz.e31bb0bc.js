@@ -33880,6 +33880,7 @@ function Country({
   isCorrect,
   isClicked
 }) {
+  const alphabetics = ['A', 'B', 'C', 'D'];
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "main"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
@@ -33891,7 +33892,7 @@ function Country({
     src: randomCountry?.flag,
     alt: "Country flag"
   }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("form", null, randomOptions.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
-    key: randomOption?.name,
+    key: randomOption?.alpha2Code,
     onClick: e => checkCorrectAnswer(e),
     className: "buttons",
     value: randomOption?.name,
@@ -34104,7 +34105,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60573" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

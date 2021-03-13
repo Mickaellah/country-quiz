@@ -3,6 +3,7 @@ import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
 function Country({randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isCorrect, isClicked}) {
+    const alphabetics = ['A', 'B', 'C', 'D'];
     return (
         <>
             <div className="main">
@@ -30,7 +31,7 @@ function Country({randomCountry, randomOptions,questions, getRandomCountries, ch
                 <form>
                     {randomOptions.map((randomOption) => 
                         <button 
-                            key={randomOption?.name}
+                            key={randomOption?.alpha2Code}
                             onClick={e => checkCorrectAnswer(e)}
                             className="buttons" 
                             value={randomOption?.name}
