@@ -33872,7 +33872,6 @@ var _reactRouterDom = require("react-router-dom");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Country({
-  countries,
   randomCountry,
   randomOptions,
   questions,
@@ -33894,13 +33893,15 @@ function Country({
     className: "flag",
     src: randomCountry?.flag,
     alt: "Country flag"
-  }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("form", null, sortedCountries.map(randomOption => /*#__PURE__*/_react.default.createElement("button", {
-    key: countries[randomOptions]?.name,
-    onClick: e => checkCorrectAnswer(e),
-    className: "buttons",
-    value: randomOption?.name,
-    id: randomOption?.name
-  }, randomOption?.name))), /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("form", null, sortedCountries.map(randomOption => {
+    return /*#__PURE__*/_react.default.createElement("button", {
+      key: randomOption?.alpha2Code,
+      onClick: e => checkCorrectAnswer(e),
+      className: "buttons",
+      value: randomOption?.name,
+      id: randomOption?.name
+    }, randomOption?.name);
+  })), /*#__PURE__*/_react.default.createElement("div", {
     className: "nextbbtn__container"
   }, isClicked ? isCorrect ? /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
@@ -34108,7 +34109,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58653" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59040" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

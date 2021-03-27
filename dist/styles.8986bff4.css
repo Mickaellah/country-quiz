@@ -158,9 +158,13 @@ span {
     background-image: url('/highlight_off-24px.bab07c15.svg');
     background-repeat: no-repeat;
     background-position: 97% 50%;
+    background: #EA8282;
 }
 
 .nextbbtn__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     margin-block-end: -34px;
 }
 
@@ -174,8 +178,8 @@ span {
     background-color: #f9a826;
     color: white;
     margin-block-start: -10px;
-    /* margin-inline-start: 72.5%; */
     font-size: 18px;
+    font-weight: 700;
     line-height: 27px;
 }
 
@@ -198,7 +202,7 @@ span {
 }
 
 .good_guess {
-    color: #3CB335;
+    color: #60BF88;
     font-size: 36px;
     font-weight: 700;
     margin-inline: 8px;
@@ -220,11 +224,6 @@ span {
     color: rgba(29,53,93,1);
     font-weight: bold;
     font-size: 18px;
-}
-
-.wrongAnswer {
-    background: #EA8282;
-
 }
 
 /*# sourceMappingURL=/styles.8986bff4.css.map */
