@@ -33872,13 +33872,15 @@ var _reactRouterDom = require("react-router-dom");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Country({
+  countries,
   randomCountry,
   randomOptions,
   questions,
   getRandomCountries,
   checkCorrectAnswer,
   isCorrect,
-  isClicked
+  isClicked,
+  reference
 }) {
   const sortedCountries = randomOptions.sort(function (a, b) {
     return a?.name.localeCompare(b?.name);
@@ -33896,6 +33898,7 @@ function Country({
   }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("form", null, sortedCountries.map(randomOption => {
     return /*#__PURE__*/_react.default.createElement("button", {
       key: randomOption?.alpha2Code,
+      ref: randomOption?.name === countries?.name ? reference : null,
       onClick: e => checkCorrectAnswer(e),
       className: "buttons",
       value: randomOption?.name,
@@ -33995,6 +33998,7 @@ function App() {
   const [questions, setQuestions] = (0, _react.useState)(0);
   const [isCorrect, setIsCorrect] = (0, _react.useState)(false);
   const [isClicked, setIsClicked] = (0, _react.useState)(false);
+  const reference = (0, _react.useRef)();
   const apiUrl = "https://restcountries.eu/rest/v2/all";
 
   async function fetchCountries() {
@@ -34010,6 +34014,7 @@ function App() {
 
   (0, _react.useEffect)(() => {
     fetchCountries();
+    setQuestions(Math.floor(Math.random() * 5));
   }, []);
 
   function getRandomCountries() {
@@ -34032,17 +34037,18 @@ function App() {
   function checkCorrectAnswer(e) {
     e.preventDefault();
     const winCountry = randomCountry.name;
-    const userGuess = e.target.value;
+    const userGuess = e.currentTarget.value;
     document.getElementById(winCountry).style.backgroundColor = '#60BF88';
     setIsClicked(true);
 
     if (winCountry === userGuess) {
-      e.target.classList.add("rightAnswer");
+      e.currentTarget.classList.add("rightAnswer");
       setGoodGuess(goodGuess + 1);
       setIsCorrect(true);
       setCountries(countries);
     } else {
-      e.target.classList.add("wrongAnswer");
+      e.currentTarget.classList.add("wrongAnswer");
+      reference.current.classList.add("rightAnswer");
       setIsCorrect(false);
     }
   }
@@ -34060,6 +34066,7 @@ function App() {
     checkCorrectAnswer: checkCorrectAnswer,
     questions: questions,
     bgColor: bgColor,
+    reference: reference,
     isCorrect: isCorrect,
     randomOptions: randomOptions,
     randomCountry: randomCountry,

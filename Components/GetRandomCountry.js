@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
-function Country({randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isCorrect, isClicked}) {
+function Country({countries, randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isCorrect, isClicked, reference}) {
     
     const sortedCountries = randomOptions.sort(function (a, b) {
         return a?.name.localeCompare(b?.name);
@@ -37,6 +37,7 @@ function Country({randomCountry, randomOptions,questions, getRandomCountries, ch
                         return (
                             <button 
                                 key={randomOption?.alpha2Code}
+                                ref={randomOption?.name === countries?.name ? reference : null}
                                 onClick={e => checkCorrectAnswer(e)}
                                 className="buttons" 
                                 value={randomOption?.name}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState, useRef } from 'react';
 import Country from './Components/GetRandomCountry';
 import Result from './Components/Result';
 
@@ -18,6 +18,8 @@ function App() {
     const [ isCorrect, setIsCorrect ] = useState(false);
     const [ isClicked, setIsClicked ] = useState(false);
 
+    const reference = useRef();
+
     const apiUrl = "https://restcountries.eu/rest/v2/all";
 
     async function fetchCountries() {
@@ -34,6 +36,7 @@ function App() {
     
     useEffect(() => {
         fetchCountries();
+        setQuestions(Math.floor(Math.random() * 5));
     }, []);
 
     function getRandomCountries() {
@@ -56,16 +59,17 @@ function App() {
         e.preventDefault();
 
         const winCountry = randomCountry.name;
-        const userGuess = e.target.value;
+        const userGuess = e.currentTarget.value;
         document.getElementById(winCountry).style.backgroundColor = '#60BF88';
         setIsClicked(true);
         if (winCountry === userGuess) {
-            e.target.classList.add("rightAnswer");
+            e.currentTarget.classList.add("rightAnswer");
             setGoodGuess(goodGuess + 1);
             setIsCorrect(true);
             setCountries(countries);
         } else {
-            e.target.classList.add("wrongAnswer")
+            e.currentTarget.classList.add("wrongAnswer")
+            reference.current.classList.add("rightAnswer");
             setIsCorrect(false);
         }
     }
@@ -87,6 +91,7 @@ function App() {
                             checkCorrectAnswer={checkCorrectAnswer}
                             questions={questions}
                             bgColor={bgColor}
+                            reference={reference}
                             isCorrect={isCorrect}
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
