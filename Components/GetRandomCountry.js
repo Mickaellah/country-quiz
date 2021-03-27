@@ -2,8 +2,12 @@ import React from 'react';
 import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
-function Country({randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isCorrect, isClicked}) {
-    const alphabetics = ['A', 'B', 'C', 'D'];
+function Country({countries, randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isCorrect, isClicked}) {
+    
+    const sortedCountries = randomOptions.sort(function (a, b) {
+        return a?.name.localeCompare(b?.name);
+    });
+
     return (
         <>
             <div className="main">
@@ -29,9 +33,9 @@ function Country({randomCountry, randomOptions,questions, getRandomCountries, ch
                     </div>
                 </div>
                 <form>
-                    {randomOptions.map((randomOption) => 
+                    {sortedCountries.map((randomOption) => 
                         <button 
-                            key={randomOption?.alpha2Code}
+                            key={countries[randomOptions]?.name}
                             onClick={e => checkCorrectAnswer(e)}
                             className="buttons" 
                             value={randomOption?.name}
@@ -41,7 +45,7 @@ function Country({randomCountry, randomOptions,questions, getRandomCountries, ch
                         </button>
                     )}
                 </form>
-                <div>
+                <div className="nextbbtn__container">
                     {isClicked 
                         ? (isCorrect 
                             ? 

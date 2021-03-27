@@ -16,11 +16,13 @@ body {
     font-family: "Poppins medium";
     background-image: url('/background.59c06501.png');
     background-repeat: no-repeat;
-    background-position: center;
-    max-width: 500px;
+    background-position: 70% 74%    ;
+    max-width: 464px;
     margin-inline-start: auto;
     margin-inline-end: auto;
     font-size: 18px;
+    margin-block-start: 182px;
+    margin-block-end: 323px;
 }
 
 header {
@@ -32,6 +34,8 @@ h1 {
     text-transform: uppercase;
     font-family: "Poppins bold";
     font-size: 36px;
+    margin-block-start: 0;
+    margin-block-end: 10px;
 }
 
 h3 {
@@ -50,16 +54,16 @@ h3 {
     position: relative;
     background-color: white;
     border-radius: 24px;
-    padding-block: 64px;
-    padding-inline: 48px;
-    margin-block-end: 100px;
+    padding-block: 68px;
+    padding-inline: 32px;
 }
 
 .image {
-    width: 200px;
+    width: 162px;
+    height: 116px;
     position: absolute;
-    top: -13%;
-    left: 60%;
+    top: -12%;
+    left: 65.5%;
 }
 
 .logo {
@@ -81,49 +85,63 @@ form {
 
 button {
     cursor: pointer;
+    outline: none;
 }
 
 button:hover:not(.try_again) {
     background-color: #f9a826;
     border: none;
+    color: white;
 }
 
 .buttons {
     display: flex;
     flex-direction: row;
     justify-content: start;
-    margin-block-start: 31px;
     border-radius: 12px;
-    padding-block: 16px;
-    border: 2px solid #6066D0;
-    color: #6066D0;
+    padding-block-start: 15px;
+    padding-block-end: 14px;
+    border: 2px solid rgba(96, 102, 208, 0.7);
+    color: rgba(96,102,208,0.8);
     background-color: white;
     font-weight: 500;
     font-size: 18px;
 }
 
+.buttons:nth-child(1) {
+    margin-block-start: 32px;
+}
+
+.buttons:not(:nth-child(1)) {
+    margin-block-start: 25px;
+}
+
+.buttons:nth-child(4) {
+    margin-block-end: 34px;
+}
+
 .buttons:nth-child(1)::before {
     content: " A ";
-    padding-inline-start: 16px;
-    padding-inline-end: 64px;
+    padding-inline-start: 12px;
+    padding-inline-end: 47px;
 }
 
 .buttons:nth-child(2)::before {
     content: " B ";
-    padding-inline-start: 16px;
-    padding-inline-end: 64px;
+    padding-inline-start: 12px;
+    padding-inline-end: 47px;
 }
 
 .buttons:nth-child(3)::before {
     content: " C ";
-    padding-inline-start: 16px;
-    padding-inline-end: 64px;
+    padding-inline-start: 12px;
+    padding-inline-end: 47px;
 }
 
 .buttons:nth-child(4)::before {
     content: " D ";
-    padding-inline-start: 16px;
-    padding-inline-end: 64px;
+    padding-inline-start: 12px;
+    padding-inline-end: 47px;
 }
 
 span {
@@ -142,40 +160,46 @@ span {
     background-position: 97% 50%;
 }
 
+.nextbbtn__container {
+    margin-block-end: -34px;
+}
+
 .next {
-    padding-block: 16px;
-    padding-inline: 32px;
+    padding-block-start: 15px;
+    padding-block-end: 14px;
+    padding-inline-start: 37px;
+    padding-inline-end: 36px;
     border-radius: 12px;
     border: none;
     background-color: #f9a826;
     color: white;
-    margin-block-start: 16px;
-    margin-inline-start: 77%;
+    margin-block-start: -10px;
+    /* margin-inline-start: 72.5%; */
+    font-size: 18px;
+    line-height: 27px;
 }
 
 .container {
     background-color: white;
     border-radius: 24px;
     padding-block: 32px;
-    padding-inline: 64px;
     text-align: center;
-    margin-block-end: 80px;
 }
 
 .heading {
     font-size: 48px;
-    color: #1D355D;
+    color: rgba(29,53,93,1);
     margin-block-start: 64px;
 }
 
 .result {
-    width: 250px;
-    margin-block-start: 32px;
+    width: 238px;
+    margin-block-start: 10px;
 }
 
 .good_guess {
-    color: #53d16e;
-    font-size: 32px;
+    color: #3CB335;
+    font-size: 36px;
     font-weight: 700;
     margin-inline: 8px;
 }
@@ -187,12 +211,13 @@ span {
 
 .try_again {
     padding-inline: 61px;
-    padding-block: 18px;
-    border: 2px solid #2F527B;
+    padding-block-start: 18px;
+    padding-block-end: 17px;
+    border: 2px solid #1D355D;
     border-radius: 12px;
     background-color: white;
-    margin-block-start: 32px;
-    color: #2F527B;
+    margin-block-start: 46px;
+    color: rgba(29,53,93,1);
     font-weight: bold;
     font-size: 18px;
 }

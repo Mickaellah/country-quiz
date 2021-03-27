@@ -68,10 +68,6 @@ function App() {
             e.target.classList.add("wrongAnswer")
             setIsCorrect(false);
         }
-
-        setTimeout(() => {
-            setQuestions(questions + 1);
-        }, 5000);
     }
 
     return (
@@ -86,6 +82,7 @@ function App() {
                     </Route>
                     <Route path="/">
                         <Country 
+                            countries={countries}
                             getRandomCountries={getRandomCountries}
                             checkCorrectAnswer={checkCorrectAnswer}
                             questions={questions}
