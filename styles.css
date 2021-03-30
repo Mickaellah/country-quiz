@@ -88,9 +88,9 @@ button {
     outline: none;
 }
 
-button:hover:not(.try_again, .rightAnswer, .wrongAnswer) {
+button:hover:not(.try_again, .rightAnswer, .wrongAnswer, .next) {
     background-color: #f9a826;
-    border: none;
+    border: 2px solid #f9a826;
     color: white;
 }
 
@@ -149,20 +149,28 @@ span {
 }
 
 .rightAnswer {
-    background-image: url('./icons/check_circle_outline-24px.svg');
-    background-repeat: no-repeat;
-    background-position: 97% 50%;
+    background-color: #60BF88;
     border: none;
     color: white;
 }
 
-.wrongAnswer {
-    background-image: url('./icons/highlight_off-24px.svg');
+.tick {
+    background-color: #60BF88;
+    background-image: url('./icons/check_circle_outline-24px.svg');
     background-repeat: no-repeat;
     background-position: 97% 50%;
+}
+
+.wrongAnswer {
     background: #EA8282;
     border: none;
     color: white;
+}
+
+.cross {
+    background-image: url('./icons/highlight_off-24px.svg');
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
 }
 
 .nextbbtn__container {

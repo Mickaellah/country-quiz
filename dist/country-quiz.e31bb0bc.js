@@ -33880,8 +33880,11 @@ function Country({
   checkCorrectAnswer,
   isCorrect,
   isClicked,
-  reference
-}) {
+  handleNextBttn
+}, props) {
+  const {
+    reference
+  } = props;
   const sortedCountries = randomOptions.sort(function (a, b) {
     return a?.name.localeCompare(b?.name);
   });
@@ -33895,10 +33898,10 @@ function Country({
     className: "flag",
     src: randomCountry?.flag,
     alt: "Country flag"
-  }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("form", null, sortedCountries.map(randomOption => {
+  }), /*#__PURE__*/_react.default.createElement("h3", null, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", null, randomCountry?.capital, " is the capital of?"))), /*#__PURE__*/_react.default.createElement("form", null, sortedCountries.map((randomOption, index) => {
     return /*#__PURE__*/_react.default.createElement("button", {
-      key: randomOption?.alpha2Code,
-      ref: randomOption?.name === countries?.name ? reference : null,
+      key: index,
+      ref: randomOption?.name == countries?.name ? reference : null,
       onClick: e => checkCorrectAnswer(e),
       className: "buttons",
       value: randomOption?.name,
@@ -33908,7 +33911,7 @@ function Country({
     className: "nextbbtn__container"
   }, isClicked ? isCorrect ? /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    onClick: getRandomCountries,
+    onClick: handleNextBttn,
     className: "next"
   }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/result"
@@ -33998,7 +34001,7 @@ function App() {
   const [questions, setQuestions] = (0, _react.useState)(0);
   const [isCorrect, setIsCorrect] = (0, _react.useState)(false);
   const [isClicked, setIsClicked] = (0, _react.useState)(false);
-  const reference = (0, _react.useRef)();
+  const reference = (0, _react.useRef)(null);
   const apiUrl = "https://restcountries.eu/rest/v2/all";
 
   async function fetchCountries() {
@@ -34036,20 +34039,36 @@ function App() {
 
   function checkCorrectAnswer(e) {
     e.preventDefault();
+    setIsClicked(true);
     const winCountry = randomCountry.name;
     const userGuess = e.currentTarget.value;
-    document.getElementById(winCountry).style.backgroundColor = '#60BF88';
-    setIsClicked(true);
+    document.getElementById(winCountry).classList.add('rightAnswer');
+    document.getElementById(winCountry).classList.add('tick');
 
     if (winCountry === userGuess) {
       e.currentTarget.classList.add("rightAnswer");
+      e.currentTarget.classList.add("tick");
       setGoodGuess(goodGuess + 1);
+      setIsClicked(true);
       setIsCorrect(true);
       setCountries(countries);
     } else {
       e.currentTarget.classList.add("wrongAnswer");
-      e.currentTarget.classList.add("rightAnswer");
+      e.currentTarget.classList.add("cross");
       setIsCorrect(false);
+      setIsClicked(true);
+    }
+  }
+
+  function handleNextBttn(e) {
+    if (isCorrect) {
+      setBgColor({
+        backgroundColor: 'white'
+      });
+      const winCountry = randomCountry.name;
+      document.getElementById(winCountry).classList.remove('rightAnswer');
+      document.getElementById(winCountry).classList.remove('tick');
+      getRandomCountries();
     }
   }
 
@@ -34070,7 +34089,8 @@ function App() {
     isCorrect: isCorrect,
     randomOptions: randomOptions,
     randomCountry: randomCountry,
-    isClicked: isClicked
+    isClicked: isClicked,
+    handleNextBttn: handleNextBttn
   })))));
 }
 

@@ -17,8 +17,7 @@ function App() {
     const [ questions, setQuestions ] = useState(0);
     const [ isCorrect, setIsCorrect ] = useState(false);
     const [ isClicked, setIsClicked ] = useState(false);
-
-    const reference = useRef();
+    const reference = useRef(null);
 
     const apiUrl = "https://restcountries.eu/rest/v2/all";
 
@@ -57,21 +56,39 @@ function App() {
 
     function checkCorrectAnswer(e) {
         e.preventDefault();
+        setIsClicked(true);
 
         const winCountry = randomCountry.name;
         const userGuess = e.currentTarget.value;
-        document.getElementById(winCountry).style.backgroundColor = '#60BF88';
-        setIsClicked(true);
+
+        document.getElementById(winCountry).classList.add('rightAnswer');
+        document.getElementById(winCountry).classList.add('tick');
+
         if (winCountry === userGuess) {
             e.currentTarget.classList.add("rightAnswer");
+            e.currentTarget.classList.add("tick");  
             setGoodGuess(goodGuess + 1);
+            setIsClicked(true);
             setIsCorrect(true);
             setCountries(countries);
         } else {
-            e.currentTarget.classList.add("wrongAnswer")
-            e.currentTarget.classList.add("rightAnswer");
+            e.currentTarget.classList.add("wrongAnswer");
+            e.currentTarget.classList.add("cross");
             setIsCorrect(false);
+            setIsClicked(true);
         }
+    }
+
+    function handleNextBttn(e) {
+        if (isCorrect) {
+            setBgColor({backgroundColor: 'white'});
+            
+            const winCountry = randomCountry.name;
+            document.getElementById(winCountry).classList.remove('rightAnswer');
+            document.getElementById(winCountry).classList.remove('tick');
+            getRandomCountries();
+        }
+       
     }
 
     return (
@@ -96,6 +113,7 @@ function App() {
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
                             isClicked={isClicked}
+                            handleNextBttn={handleNextBttn}
                         />
                     </Route>
                 </Switch>

@@ -2,8 +2,8 @@ import React from 'react';
 import Image from '../img/undraw_adventure_4hum 1.svg';
 import {Link} from 'react-router-dom';
 
-function Country({countries, randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isCorrect, isClicked, reference}) {
-    
+function Country({countries, randomCountry, randomOptions,questions, getRandomCountries, checkCorrectAnswer, isCorrect, isClicked, handleNextBttn}, props) {
+    const {reference} = props
     const sortedCountries = randomOptions.sort(function (a, b) {
         return a?.name.localeCompare(b?.name);
     });
@@ -33,11 +33,11 @@ function Country({countries, randomCountry, randomOptions,questions, getRandomCo
                     </div>
                 </div>
                 <form>
-                    {sortedCountries.map((randomOption) => {
+                    {sortedCountries.map((randomOption, index) => {
                         return (
                             <button 
-                                key={randomOption?.alpha2Code}
-                                ref={randomOption?.name === countries?.name ? reference : null}
+                                key={index}
+                                ref={randomOption?.name == countries?.name ? reference : null}
                                 onClick={e => checkCorrectAnswer(e)}
                                 className="buttons" 
                                 value={randomOption?.name}
@@ -50,13 +50,13 @@ function Country({countries, randomCountry, randomOptions,questions, getRandomCo
                     )}
                 </form>
                 <div className="nextbbtn__container">
-                    {isClicked 
+                    {isClicked
                         ? 
-                        (isCorrect 
+                        (isCorrect
                             ? 
                             <button 
                                 type="button" 
-                                onClick={getRandomCountries} 
+                                onClick={handleNextBttn} 
                                 className="next">
                                 Next
                             </button>
