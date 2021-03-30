@@ -51,7 +51,8 @@ function Country({countries, randomCountry, randomOptions,questions, getRandomCo
                 </form>
                 <div className="nextbbtn__container">
                     {isClicked 
-                        ? (isCorrect 
+                        ? 
+                        (isCorrect 
                             ? 
                             <button 
                                 type="button" 

@@ -69,7 +69,7 @@ function App() {
             setCountries(countries);
         } else {
             e.currentTarget.classList.add("wrongAnswer")
-            reference.current.classList.add("rightAnswer");
+            e.currentTarget.classList.add("rightAnswer");
             setIsCorrect(false);
         }
     }
