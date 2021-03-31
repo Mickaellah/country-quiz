@@ -33880,7 +33880,8 @@ function Country({
   checkCorrectAnswer,
   isCorrect,
   isClicked,
-  handleNextBttn
+  handleNextBttn,
+  isLoading
 }, props) {
   const {
     reference
@@ -33888,7 +33889,7 @@ function Country({
   const sortedCountries = randomOptions.sort(function (a, b) {
     return a?.name.localeCompare(b?.name);
   });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isLoading && /*#__PURE__*/_react.default.createElement("h2", null, "Loading..."), !isLoading && countries && /*#__PURE__*/_react.default.createElement("div", {
     className: "main"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     className: "image",
@@ -34001,6 +34002,7 @@ function App() {
   const [questions, setQuestions] = (0, _react.useState)(0);
   const [isCorrect, setIsCorrect] = (0, _react.useState)(false);
   const [isClicked, setIsClicked] = (0, _react.useState)(false);
+  const [isLoading, setIsLoading] = (0, _react.useState)(true);
   const reference = (0, _react.useRef)(null);
   const apiUrl = "https://restcountries.eu/rest/v2/all";
 
@@ -34010,6 +34012,7 @@ function App() {
       const data = await res.json();
       setCountries(data);
       setRandomCountry(data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -34052,6 +34055,7 @@ function App() {
       setIsClicked(true);
       setIsCorrect(true);
       setCountries(countries);
+      setIsLoading(false);
     } else {
       e.currentTarget.classList.add("wrongAnswer");
       e.currentTarget.classList.add("cross");
@@ -34090,7 +34094,8 @@ function App() {
     randomOptions: randomOptions,
     randomCountry: randomCountry,
     isClicked: isClicked,
-    handleNextBttn: handleNextBttn
+    handleNextBttn: handleNextBttn,
+    isLoading: isLoading
   })))));
 }
 
@@ -34136,7 +34141,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60632" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52297" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

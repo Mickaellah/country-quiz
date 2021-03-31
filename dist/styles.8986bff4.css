@@ -38,6 +38,10 @@ h1 {
     margin-block-end: 10px;
 }
 
+.loading {
+    color: white;
+}
+
 h3 {
     color: #2F527B;
     font-size: 24px;

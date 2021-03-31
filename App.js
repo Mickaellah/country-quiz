@@ -17,6 +17,7 @@ function App() {
     const [ questions, setQuestions ] = useState(0);
     const [ isCorrect, setIsCorrect ] = useState(false);
     const [ isClicked, setIsClicked ] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const reference = useRef(null);
 
     const apiUrl = "https://restcountries.eu/rest/v2/all";
@@ -28,6 +29,7 @@ function App() {
 
             setCountries(data);
             setRandomCountry(data);
+            setIsLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -71,6 +73,7 @@ function App() {
             setIsClicked(true);
             setIsCorrect(true);
             setCountries(countries);
+            setIsLoading(false);
         } else {
             e.currentTarget.classList.add("wrongAnswer");
             e.currentTarget.classList.add("cross");
@@ -114,6 +117,7 @@ function App() {
                             randomCountry={randomCountry}
                             isClicked={isClicked}
                             handleNextBttn={handleNextBttn}
+                            isLoading={isLoading}
                         />
                     </Route>
                 </Switch>
