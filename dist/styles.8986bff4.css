@@ -113,6 +113,10 @@ button:hover:not(.try_again, .rightAnswer, .wrongAnswer, .next) {
     font-size: 18px;
 }
 
+.disabled {
+    cursor: not-allowed;
+}
+
 .buttons:nth-child(1) {
     margin-block-start: 32px;
 }

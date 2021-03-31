@@ -79,6 +79,7 @@ function App() {
             e.currentTarget.classList.add("cross");
             setIsCorrect(false);
             setIsClicked(true);
+            setGoodGuess(0);
         }
     }
 
@@ -91,7 +92,6 @@ function App() {
             document.getElementById(winCountry).classList.remove('tick');
             getRandomCountries();
         }
-       
     }
 
     return (

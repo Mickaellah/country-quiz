@@ -34061,6 +34061,7 @@ function App() {
       e.currentTarget.classList.add("cross");
       setIsCorrect(false);
       setIsClicked(true);
+      setGoodGuess(0);
     }
   }
 
@@ -34141,7 +34142,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52297" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64520" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
