@@ -1,19 +1,9 @@
 # Country Quiz
 
-## Table of Contents
-
--   [Overview](#overview)
-    -   [Built With](#built-with)
--   [What I did](#what-I-did)
--   [How does it work](#how-does-it-work)
--   [Contact](#contact)
-
-<!-- OVERVIEW -->
 
 ## Overview
 
-![screenshot](./country-quiz.png)
-![screenshot](./result-page.png)
+![screenshot](./country_quiz.jpg)
 
 ### Built With
 
