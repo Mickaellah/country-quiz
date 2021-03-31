@@ -52,6 +52,7 @@ h3 {
 .flag {
     width: 84px;
     height: 54px;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
 }
 
 .main {
