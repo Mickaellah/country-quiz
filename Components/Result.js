@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../img/undraw_winners_ao2o 2.svg';
 import {Link} from 'react-router-dom';
 
-function Result({ goodGuess, getRandomCountries}) {
+function Result({ goodGuess, handleTryAgain}) {
     return (
         <>
             <div className='container'>
@@ -21,7 +21,7 @@ function Result({ goodGuess, getRandomCountries}) {
                 <Link to='/'>
                     <button 
                         type="button" 
-                        onClick={getRandomCountries} 
+                        onClick={handleTryAgain} 
                         className="try_again"
                     >Try again</button>
                 </Link>

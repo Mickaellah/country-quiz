@@ -33876,10 +33876,10 @@ function Country({
   randomCountry,
   randomOptions,
   questions,
-  getRandomCountries,
   checkCorrectAnswer,
   isCorrect,
   isClicked,
+  isDisabled,
   handleNextBttn,
   isLoading
 }, props) {
@@ -33905,6 +33905,7 @@ function Country({
       ref: randomOption?.name == countries?.name ? reference : null,
       onClick: e => checkCorrectAnswer(e),
       className: "buttons",
+      disabled: isDisabled,
       value: randomOption?.name,
       id: randomOption?.name
     }, randomOption?.name);
@@ -33944,7 +33945,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Result({
   goodGuess,
-  getRandomCountries
+  handleTryAgain
 }) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
@@ -33962,7 +33963,7 @@ function Result({
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    onClick: getRandomCountries,
+    onClick: handleTryAgain,
     className: "try_again"
   }, "Try again"))));
 }
@@ -34003,6 +34004,7 @@ function App() {
   const [isCorrect, setIsCorrect] = (0, _react.useState)(false);
   const [isClicked, setIsClicked] = (0, _react.useState)(false);
   const [isLoading, setIsLoading] = (0, _react.useState)(true);
+  const [isDisabled, setIsDisabled] = (0, _react.useState)(false);
   const reference = (0, _react.useRef)(null);
   const apiUrl = "https://restcountries.eu/rest/v2/all";
 
@@ -34031,6 +34033,7 @@ function App() {
     const randomOptions = [random, randomOpt1, randomOpt2, randomOpt3];
     setRandomOptions(randomOptions);
     setRandomCountry(random);
+    setIsDisabled(false);
     setBgColor({
       backgroundColor: 'white'
     });
@@ -34043,6 +34046,7 @@ function App() {
   function checkCorrectAnswer(e) {
     e.preventDefault();
     setIsClicked(true);
+    setIsCorrect(true);
     const winCountry = randomCountry.name;
     const userGuess = e.currentTarget.value;
     document.getElementById(winCountry).classList.add('rightAnswer');
@@ -34051,37 +34055,40 @@ function App() {
     if (winCountry === userGuess) {
       e.currentTarget.classList.add("rightAnswer");
       e.currentTarget.classList.add("tick");
-      setGoodGuess(goodGuess + 1);
-      setIsClicked(true);
-      setIsCorrect(true);
       setCountries(countries);
       setIsLoading(false);
+      setIsDisabled(true);
     } else {
       e.currentTarget.classList.add("wrongAnswer");
       e.currentTarget.classList.add("cross");
       setIsCorrect(false);
-      setIsClicked(true);
-      setGoodGuess(0);
+      setIsDisabled(true);
     }
   }
 
   function handleNextBttn(e) {
+    setIsDisabled(false);
+    setIsCorrect(false);
+    const winCountry = randomCountry.name;
+    document.getElementById(winCountry).classList.remove('rightAnswer');
+    document.getElementById(winCountry).classList.remove('tick');
+    getRandomCountries();
+
     if (isCorrect) {
-      setBgColor({
-        backgroundColor: 'white'
-      });
-      const winCountry = randomCountry.name;
-      document.getElementById(winCountry).classList.remove('rightAnswer');
-      document.getElementById(winCountry).classList.remove('tick');
-      getRandomCountries();
+      setGoodGuess(prevState => prevState + 1);
     }
+  }
+
+  function handleTryAgain() {
+    setGoodGuess(0);
+    getRandomCountries();
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/result"
   }, /*#__PURE__*/_react.default.createElement(_Result.default, {
     goodGuess: goodGuess,
-    getRandomCountries: getRandomCountries
+    handleTryAgain: handleTryAgain
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_GetRandomCountry.default, {
@@ -34095,8 +34102,10 @@ function App() {
     randomOptions: randomOptions,
     randomCountry: randomCountry,
     isClicked: isClicked,
+    setIsClicked: setIsClicked,
     handleNextBttn: handleNextBttn,
-    isLoading: isLoading
+    isLoading: isLoading,
+    isDisabled: isDisabled
   })))));
 }
 
@@ -34142,7 +34151,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64520" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50048" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

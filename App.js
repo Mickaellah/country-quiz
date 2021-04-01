@@ -18,6 +18,7 @@ function App() {
     const [ isCorrect, setIsCorrect ] = useState(false);
     const [ isClicked, setIsClicked ] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [isDisabled, setIsDisabled] = useState(false);
     const reference = useRef(null);
 
     const apiUrl = "https://restcountries.eu/rest/v2/all";
@@ -49,6 +50,7 @@ function App() {
 
         setRandomOptions(randomOptions);
         setRandomCountry(random);
+        setIsDisabled(false);
         setBgColor({backgroundColor: 'white'});
     }
 
@@ -59,6 +61,7 @@ function App() {
     function checkCorrectAnswer(e) {
         e.preventDefault();
         setIsClicked(true);
+        setIsCorrect(true);
 
         const winCountry = randomCountry.name;
         const userGuess = e.currentTarget.value;
@@ -68,30 +71,33 @@ function App() {
 
         if (winCountry === userGuess) {
             e.currentTarget.classList.add("rightAnswer");
-            e.currentTarget.classList.add("tick");  
-            setGoodGuess(goodGuess + 1);
-            setIsClicked(true);
-            setIsCorrect(true);
+            e.currentTarget.classList.add("tick");
             setCountries(countries);
             setIsLoading(false);
+            setIsDisabled(true);
         } else {
             e.currentTarget.classList.add("wrongAnswer");
             e.currentTarget.classList.add("cross");
             setIsCorrect(false);
-            setIsClicked(true);
-            setGoodGuess(0);
+            setIsDisabled(true);
         }
     }
 
     function handleNextBttn(e) {
+        setIsDisabled(false);
+        setIsCorrect(false);
+        const winCountry = randomCountry.name;
+        document.getElementById(winCountry).classList.remove('rightAnswer');
+        document.getElementById(winCountry).classList.remove('tick');
+        getRandomCountries();
         if (isCorrect) {
-            setBgColor({backgroundColor: 'white'});
-            
-            const winCountry = randomCountry.name;
-            document.getElementById(winCountry).classList.remove('rightAnswer');
-            document.getElementById(winCountry).classList.remove('tick');
-            getRandomCountries();
+            setGoodGuess(prevState => prevState + 1);
         }
+    }
+
+    function handleTryAgain() {
+        setGoodGuess(0);
+        getRandomCountries();
     }
 
     return (
@@ -101,7 +107,7 @@ function App() {
                     <Route path="/result">
                         <Result 
                             goodGuess={goodGuess}
-                            getRandomCountries={getRandomCountries}
+                            handleTryAgain={handleTryAgain}
                         />
                     </Route>
                     <Route path="/">
@@ -116,8 +122,10 @@ function App() {
                             randomOptions={randomOptions}
                             randomCountry={randomCountry}
                             isClicked={isClicked}
+                            setIsClicked={setIsClicked}
                             handleNextBttn={handleNextBttn}
                             isLoading={isLoading}
+                            isDisabled={isDisabled}
                         />
                     </Route>
                 </Switch>
